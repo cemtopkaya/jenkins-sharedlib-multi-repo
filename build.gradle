@@ -1,0 +1,79 @@
+plugins{
+  id 'groovy' apply true
+}
+
+repositories {
+  mavenCentral()
+  jcenter()
+  flatDir {
+    dirs 'lib'
+  }
+  maven { url 'https://repo.jenkins-ci.org/releases/' }
+}
+
+sourceSets {
+  main {
+    groovy {
+      srcDirs = ['src', 'vars']
+    }
+  }
+  test {
+    groovy {
+      srcDirs = ['test']
+    }
+  }
+}
+
+configurations {
+    groovyScript
+}
+
+task runScript (dependsOn: 'classes', type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = 'groovy.ui.GroovyMain'
+    
+    args 'test.gvy'
+}
+ 
+dependencies {
+  /** compile yerine implemenetation kullanılacak!!!
+   * The compile configuration has been deprecated for dependency declaration. 
+   * This will fail with an error in Gradle 7.0.
+   * ref: https://stackoverflow.com/questions/59367435/how-to-make-a-jar-file-with-dependencies-by-gradle-7-0
+   * ref: https://docs.gradle.org/current/userguide/java_plugin.html#tab:configurations
+   * Çözüm: The compile configuration has been deprecated in favor of implementation.
+   */
+
+  /** Repo üstünden bulup indirsin istersek: 
+  compile 'com.cloudbees:groovy-cps:1.24'
+  compile 'org.codehaus.groovy:groovy-all:2.5.10'
+
+  compile 'org.eclipse.hudson:hudson-core:3.2.1'
+  compile "org.jenkins-ci.plugins:job-dsl-core:${jobDslVersion}"
+  compile files(
+    ,'./lib/hudson-core-3.2.1.jar'
+    ,'./lib/job-dsl-core-1.77.jar'
+  )
+
+  compile 'org.apache.ivy:ivy:2.4.0'
+  compile 'org.jenkins-ci.main:jenkins-core:2.164.1'
+
+  def staplerGAV = 'org.kohsuke.stapler:stapler:1.255'
+  compile staplerGAV
+  annotationProcessor staplerGAV
+
+  compile 'org.jenkins-ci.plugins.workflow:workflow-step-api:2.19@jar'
+  compile 'org.jenkins-ci.plugins:pipeline-utility-steps:2.2.0@jar'
+   */
+  implementation files(
+    './lib/groovy-cps-1.24.jar'
+   /** Yerelde olan groovy için: 
+    *     groovyScript localGroovy() 
+    * veya daha belirli bir versiyonu isteyebiliriz
+    *     groovyScript "org.codehaus.groovy:groovy-all:2.4.5"
+    * ama biz 2.5.10 sürümünü indirdiğimiz ./lib dizininden çağıralım
+    **/ 
+    ,'./lib/groovy-2.5.10.jar'
+  )
+}
