@@ -8,4 +8,5 @@ $ groovy -cp "./src;./lib/groovy-cps-1.24.jar" test.gvy
 ```
 
 ## Gradle ÜSTÜNDE OTOMASYONLA ÇALIŞTIRMAK
-az sonra...
+Burada toparlıyorum nasıl yaptığımı:
+[Groovy Notlarım](https://medium.com/@topkaya.cem/groovy-notlar%C4%B1m-e6177caea6a1)
