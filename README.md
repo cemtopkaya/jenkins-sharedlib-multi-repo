@@ -1,20 +1,11 @@
-Konsol üstünde çalıştırmak için
+## CLI ÜSTÜNDEN ELLE KOŞTURMAK
+Konsol üstünden groovy kod dosyamızı çalıştırmak için classpath argumanına hem sınıflarımıza erişsin diye ./src dizinini 
+hem de @NonCPS annotation'ınını kullandığımız kütüphanenin jar dosyasının yolunu veriyoruz.
 
 ```
-groovy -cp ./src test.gvy
+$ groovy -cp "./src;./lib/groovy-cps-1.24.jar" test.gvy
+[@cinar/cn-nrf-api, @cinar/cn-nef, @cinar/cn-nssf, @cinar/cn-nrf]
 ```
 
-classpath olarak ./src dizinini gösteriyoruz. Böylece arayacağı paketleri /src dizini içinde bulabileceğine ikna ediyoruz.
-Eğer harici bir jar dahil etmek isteseydik aşağıdaki gibi eklerdik
-```
--cp "./src; c:/temp/kütüp.jar; ./vars" 
-```
-
-Sonrasında gelen xxx.groovy dosyası ise bu classpath içindeki dosyaları kullanarak çalıştıracağımız xxx.groovy 
-veya xxx.gvy dosyasını işaret etmek içindir.
-
-en başta "groovy" executable dosyanın da ortam değişkenlerinden erişilebilir olmasına dikkat etmek gerek.
-
-[Referans](https://gist.github.com/tknerr/42258e761f2a0f95a92b)
-
-build.gradle dosyasında classpath
+## Gradle ÜSTÜNDE OTOMASYONLA ÇALIŞTIRMAK
+az sonra...
