@@ -9,13 +9,10 @@ import com.cloudbees.groovy.cps.NonCPS
 
 //@NonCPS
 def  ArrayList call(String absolutePackageJsonPath){
-// def  ArrayList call(String fileContent){
     def res = []
     
     def json = readJSON file:absolutePackageJsonPath
-    echo "peerDependencies:------------ ${json}"
-    echo json["peerDependencies"].each { key, value ->
-        echo "Walked through key $key and value $value"
+    json["peerDependencies"].each { key, value ->
         if(key.startsWith("@")){
             res.add(key)
         }
