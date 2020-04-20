@@ -10,7 +10,7 @@ import com.cloudbees.groovy.cps.NonCPS
 class AngularParser {
 
     @NonCPS
-    def static Map<String, Paket> parseAngularJson(String lines){
+    def static Map<String, Paket> parseAngularJson(String file){
         println "lines: ------- ${lines}"
         def res = [:]
         
@@ -20,7 +20,7 @@ class AngularParser {
         // // println("data........data....:${data}")
         // println "File.class.name: ${File.class.name}"
         // def file = new File(path)
-        // def lines = file.readLines()
+        def lines = file.split("\n")
 
         lines.eachWithIndex{line, idx ->
             def reg =  ~/.*"projectType": "library",/
