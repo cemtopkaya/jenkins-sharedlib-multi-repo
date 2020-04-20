@@ -13,10 +13,10 @@ def  ArrayList call(String libDirPath){
     
     def json = readJSON file: "${libDirPath}/package.json"
     println "------- $json -----------"
-    json["peerDependencies"].each { key, value ->
-        println "keyyyyyyyyyyyy $key yyyyyyyyyek"
-        if(key.startsWith("@")){
-            res.add(key)
+    json["peerDependencies"].each { k, v ->
+        println "keyyyyyyyyyyyy $k yyyyyyyyyek"
+        if(k.startsWith("@")){
+            res.add(k)
         }
     }
 
