@@ -13,7 +13,7 @@ def  Map<String, Paket> call(String file) {
     // println "File.class.name: ${File.class.name}"
     // def file = new File(path)
     println "file::::::: ${file}"
-    def lines = file.split("\r\n")
+    def lines = file.split("\n")
     println "lines.size()::::::: ${lines.size()}"
 
     for (def idx=0;idx<lines.size();idx++){
