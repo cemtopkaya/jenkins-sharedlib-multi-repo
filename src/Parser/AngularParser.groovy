@@ -38,11 +38,11 @@ class AngularParser {
                 def name = matcher[0][0]
 
                 
-                println "WORKSPACE: ${env.WORKSPACE}"
-                sh "pwd"
-                def dir = "${env.WORKSPACE}/developer/package.json"
-                println "dirrrrrrrrrrrr: ${dir}"
-                res.put(name, new Paket(name, root, PackageParser.parseJson(dir)))
+                // println "WORKSPACE: ${env.WORKSPACE}"
+                // sh "pwd"
+                // def dir = "${env.WORKSPACE}/developer/package.json"
+                // println "dirrrrrrrrrrrr: ${dir}"
+                // res.put(name, new Paket(name, root, PackageParser.parseJson(dir)))
             }
         }
 
