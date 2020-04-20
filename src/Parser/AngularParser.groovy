@@ -9,7 +9,7 @@ import com.cloudbees.groovy.cps.NonCPS
 
 class AngularParser {
 
-    @NonCPS
+//    @NonCPS
     def static Map<String, Paket> parseAngularJson(String file){
         println "parseAngularJson-parseAngularJson-parseAngularJson-parseAngularJson-parseAngularJson"
         def res = [:]
@@ -23,7 +23,8 @@ class AngularParser {
         def lines = file.split("\r\n")
         println "lines.size()::::::: ${lines.size()}"
 
-        lines.eachWithIndex{line, idx ->
+        for (idx=0;idx<lines.size();i++){
+            line = lines[i]   
             println "line:${line} - idX:${idx}"
             def reg =  ~/.*"projectType": "library",/
             if(reg.matcher(line).matches() && (idx-1>0) && (idx+1)<lines.size()){
