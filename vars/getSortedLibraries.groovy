@@ -38,7 +38,7 @@ def ArrayList getDependencies(Map<String, Paket> collection){
     for (entry in collection) {
         println "Key: $entry.key \n\t Value: $entry.value \n\t\t Path: $entry.value.path \n\t\t Dependencies: $entry.value.dependencies"
         for (d in entry.value.dependencies) {
-            if(!depNames.contains(d)) {
+            if(d.startsWith(entry.key.split("/")[0]) && !depNames.contains(d)) {
                 depNames.add(d)
             }
         }
