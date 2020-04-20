@@ -14,10 +14,11 @@ def  ArrayList call(String fileContent){
     // def lines = new File("${jsonPath}/package.json").readLines()
     def lines = fileContent.split("\n")
 
-    lines.eachWithIndex { line, idx ->
+    for(line in lines){
         def matcher = line =~ /@.*(?=":)/
         if(matcher.size()>0){
             def dependency = matcher[0]
+            println "Bağımlılık bulundu: ${dependency}"
             res.add(dependency)
         }
     }
