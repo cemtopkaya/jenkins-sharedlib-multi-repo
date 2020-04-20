@@ -18,6 +18,7 @@ class AngularParser {
         // // println("data........data....:${data}")
         // println "File.class.name: ${File.class.name}"
         // def file = new File(path)
+        println "file::::::: ${file}"
         def lines = file.split("\r\n")
         println "lines.size()::::::: ${lines.size()}"
 
