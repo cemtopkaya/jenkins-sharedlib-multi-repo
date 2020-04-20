@@ -4,7 +4,7 @@ import groovy.io.*;
 import java.util.regex.Pattern
 import com.cloudbees.groovy.cps.NonCPS
 
-@NonCPS
+//@NonCPS
 def  Map<String, Paket> call(String prjDirPath) {
     println "parseAngularJson-parseAngularJson-parseAngularJson-parseAngularJson-parseAngularJson"
     def res = [:]
