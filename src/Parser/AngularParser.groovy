@@ -13,7 +13,7 @@ class AngularParser {
     def static Map<String, Paket> parseAngularJson(String projectDir){
         def res = [:]
         
-        def path = "${projectDir}/angular.json".replaceAll("\\","/")
+        def path = "${projectDir}/angular.json".replace("\\","/")
         println "path::::::: ${path}"
         def lines = new File(path).readLines()
 
