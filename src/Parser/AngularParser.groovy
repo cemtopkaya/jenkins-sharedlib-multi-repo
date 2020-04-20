@@ -15,9 +15,11 @@ class AngularParser {
         
         def path = "${projectDir}/angular.json".replace("\\","/")
         println "path::::::: ${path}"
-        def data = readFile(file: 'developer/angular.json')
-        println("data........data....:${data}")
-        def lines = new File(path).readLines()
+        // def data = readFile(file: 'developer/angular.json')
+        // println("data........data....:${data}")
+        println "File.class.name: ${File.class.name}"
+        def file = new File(path)
+        def lines = file.readLines()
 
         lines.eachWithIndex{line, idx ->
             def reg =  ~/.*"projectType": "library",/
