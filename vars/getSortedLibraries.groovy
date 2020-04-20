@@ -13,8 +13,9 @@ def call(Map<String, Paket> param){
     def fnSort = { String a, String b ->    
             //println "\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
             //println "a: $a -- b: $b"
-            //println "   a.dependencies: ${param.get(a).dependencies}"
             
+            //println "   a.dependencies: ${param.get(a).dependencies}"
+
             //println "   b.dependencies: ${param.get(b).dependencies}"
 
             //println "   a.dep.contains(b): ${param.get(a).dependencies?.contains(b)}"
