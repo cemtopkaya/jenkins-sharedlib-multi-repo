@@ -20,23 +20,19 @@ def  Map<String, Paket> call(String file) {
 
     for (def idx=0;idx<lines.size();idx++){
         line = lines[idx]   
-        println "line:${line} - idX:${idx}"
+        // println "line:${line} - idX:${idx}"
         def reg =  ~/.*"projectType": "library",/
         if(reg.matcher(line).matches() && (idx-1>0) && (idx+1)<lines.size()){
             // println "${idx} \t Current Line: ${line} \t Prev Line: ${lines[idx-1]} \t Next Line: ${lines[idx+1]}"
             // lines[idx-1].grep(~/(@cinar.*)>?"/){ match, a -> name = a }
             // lines[idx+1].grep(~/(projects.*)>?"/){ match, a -> root = a }
-            def matcher = lines[idx+1] =~ /((projects.*(?=")))/                
-            
-            println "root matcher[0] ${matcher[0]}"
+            def matcher = lines[idx+1] =~ /((projects.*(?=")))/
             def root = matcher[0][0]
-            println "root: ${root}"
             
             matcher = lines[idx-1] =~ ~/((@.*(?=")))/
-            println "name matcher[0] ${matcher[0]}"
             def name = matcher[0][0]
-            println "name: ${name}"
 
+            println "name: ${name}, root: ${root}"
             res.put(name, new Paket(name, root, []))
         }
     }
