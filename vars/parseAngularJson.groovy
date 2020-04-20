@@ -28,10 +28,12 @@ def  Map<String, Paket> call(String file) {
             
             println "root matcher[0] ${matcher[0]}"
             def root = matcher[0][0]
+            println "root: ${root}"
             
-            matcher = lines[idx-1] =~ ~/((@cinar.*(?=")))/
+            matcher = lines[idx-1] =~ ~/((@.*(?=")))/
             println "name matcher[0] ${matcher[0]}"
             def name = matcher[0][0]
+            println "name: ${name}"
 
             
             println "WORKSPACE: ${WORKSPACE}"
