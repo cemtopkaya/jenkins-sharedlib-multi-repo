@@ -1,5 +1,3 @@
-package Sorter
-
 import Model.Paket
 import java.io.*;
 import groovy.io.*;
@@ -32,25 +30,23 @@ def call(Map<String, Paket> param){
         return sorted
     }
 
-    @NonCPS
-    def ArrayList getDependencies(Map<String, Paket> p1){
-        def libModuleNames = p1.keySet();
-        def depNames = []
-        p1.eachWithIndex { entry, index ->
+@NonCPS
+def ArrayList getDependencies(Map<String, Paket> p1){
+    def libModuleNames = p1.keySet();
+    def depNames = []
+    p1.eachWithIndex { entry, index ->
 
-            // println "$index Key: $entry.key \n\t Value: $entry.value \n\t Path: $entry.value.path \n\t Dependencies: $entry.value.dependencies"
+        // println "$index Key: $entry.key \n\t Value: $entry.value \n\t Path: $entry.value.path \n\t Dependencies: $entry.value.dependencies"
 
-            entry.value.dependencies.each{
-                d-> // println "\n\t Dep Name: ${d} \n\t $depNames \n\t depNames.contains(d): ${depNames.contains(d)} \n***************"
-                    if(!depNames.contains(d)) {
-                        depNames.add(d)
-                    }
-            }
+        entry.value.dependencies.each{
+            d-> // println "\n\t Dep Name: ${d} \n\t $depNames \n\t depNames.contains(d): ${depNames.contains(d)} \n***************"
+                if(!depNames.contains(d)) {
+                    depNames.add(d)
+                }
         }
-
-        // println "---------- depNames: $depNames"
-
-        return depNames
     }
 
+    // println "---------- depNames: $depNames"
+
+    return depNames
 }
