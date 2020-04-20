@@ -8,7 +8,7 @@ import com.cloudbees.groovy.cps.NonCPS
 @NonCPS
 def ArrayList call(Map<String, Paket> param){
     def libs = param.keySet();
-    def deps = getDependencies(param)
+    def deps = getInternalDependencies(param)
 
     def fnSort = { String a, String b ->    
             //println "\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
@@ -32,7 +32,7 @@ def ArrayList call(Map<String, Paket> param){
 }
 
 @NonCPS
-def ArrayList getDependencies(Map<String, Paket> collection){
+def ArrayList getInternalDependencies(Map<String, Paket> collection){
     def libModuleNames = collection.keySet();
     def depNames = []
     for (entry in collection) {
