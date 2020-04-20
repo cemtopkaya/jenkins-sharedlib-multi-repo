@@ -1,5 +1,3 @@
-package Parser
-
 import Model.Paket
 import java.io.*;
 import groovy.io.*;
