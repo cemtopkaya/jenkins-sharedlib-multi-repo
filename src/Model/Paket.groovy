@@ -1,6 +1,6 @@
 package Model
 
-class Paket{
+class Paket implements Serializable{
     String name;
     String path;
     def dependencies;
