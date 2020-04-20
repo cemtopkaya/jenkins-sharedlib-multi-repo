@@ -8,28 +8,16 @@ import java.util.regex.Pattern
 import com.cloudbees.groovy.cps.NonCPS
 
 //@NonCPS
-def  ArrayList call(String absFilePath){
+def  ArrayList call(String absolutePackageJsonPath){
 // def  ArrayList call(String fileContent){
     def res = []
     
-    // def lines = new File("${jsonPath}/package.json").readLines()
-    def json = readJSON file:absFilePath
-    echo "peerDependencies:------------"
+    def json = readJSON file:absolutePackageJsonPath
+    echo "peerDependencies:------------ ${json}"
     echo json["peerDependencies"].each { key, value ->
         echo "Walked through key $key and value $value"
-        echo "Sınıf adı: ${key.class.name}"
-    }
-
-    def fileContent = readFile file:absFilePath
-    echo "fileContent: ${fileContent}"
-    def lines = fileContent.split("\n")
-
-    for(line in lines){
-        def matcher = line =~ /@.*(?=":)/
-        if(matcher.size()>0){
-            def dependency = matcher[0]
-            println "Bağımlılık bulundu: ${dependency}"
-            res.add(dependency)
+        if(key.startsWith("@")){
+            res.add(key)
         }
     }
 
