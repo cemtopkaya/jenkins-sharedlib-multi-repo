@@ -11,7 +11,6 @@ class AngularParser {
 
     @NonCPS
     def static Map<String, Paket> parseAngularJson(String file){
-        println "lines: ------- ${lines}"
         def res = [:]
         
         // def path = "${projectDir}/angular.json".replace("\\","/")
