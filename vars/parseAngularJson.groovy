@@ -9,6 +9,10 @@ def  Map<String, Paket> call(String prjDirPath) {
     println "parseAngularJson-parseAngularJson-parseAngularJson-parseAngularJson-parseAngularJson"
     def res = [:]
     
+    def jsn = readJSON file: "${prjDirPath}/angular.json"
+    println "---------- jsn --------------"
+    println jsn
+    return null
     def file = readFile file: "${prjDirPath}/angular.json"
     def lines = file.split("\n")
     println "lines.size()::::::: ${lines.size()}"
