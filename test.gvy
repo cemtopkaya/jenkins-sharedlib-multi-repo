@@ -5,7 +5,7 @@ import Parser.AngularParser;
 import Sorter.BuildSorter; 
 
 def projectPath = "C:/Users/cem.topkaya/git/gui_nrf_test/"
-def map = AngularParser.parseAngularJson(projectPath)
+def map = parseAngularJson(projectPath)
 //println map
 res = BuildSorter.getSortedLibraries(map)
 println res
