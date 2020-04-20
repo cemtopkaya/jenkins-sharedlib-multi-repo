@@ -12,8 +12,8 @@ def  Map<String, Paket> call(String prjDirPath) {
     def jsn = readJSON file: "${prjDirPath}/angular.json"
     jsn["projects"].each { k, v ->
         println "---------- $k --------------"
-        if(k["projectType"]=="library"){            
-            res.put(k, new Paket(name, k["root"], []))
+        if(jsn["projects"][k]["projectType"]=="library"){            
+            res.put(k, new Paket(name, jsn["projects"][k]["root"], []))
         }
     }
     println res
