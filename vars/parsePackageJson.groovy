@@ -13,6 +13,10 @@ def  ArrayList call(String absFilePath){
     def res = []
     
     // def lines = new File("${jsonPath}/package.json").readLines()
+    def json = readJSON file:absFilePath
+    echo "peerDependencies:------------"
+    echo json["peerDependencies"]
+    
     def fileContent = readFile file:absFilePath
     echo "fileContent: ${fileContent}"
     def lines = fileContent.split("\n")
