@@ -39,7 +39,6 @@ def  Map<String, Paket> call(String file) {
 
             
             println "WORKSPACE: ${WORKSPACE}"
-            sh "pwd"
             def dir = "${WORKSPACE}/developer/package.json"
             println "dirrrrrrrrrrrr: ${dir}"
             res.put(name, new Paket(name, root, parsePackageJson(dir)))
