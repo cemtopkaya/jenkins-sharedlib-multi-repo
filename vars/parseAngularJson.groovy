@@ -18,8 +18,8 @@ def  Map<String, Paket> call(String file) {
     def lines = file.split("\r\n")
     println "lines.size()::::::: ${lines.size()}"
 
-    for (def idx=0;idx<lines.size();i++){
-        line = lines[i]   
+    for (def idx=0;idx<lines.size();idx++){
+        line = lines[idx]   
         println "line:${line} - idX:${idx}"
         def reg =  ~/.*"projectType": "library",/
         if(reg.matcher(line).matches() && (idx-1>0) && (idx+1)<lines.size()){
