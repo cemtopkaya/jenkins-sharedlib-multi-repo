@@ -25,9 +25,12 @@ def  Map<String, Paket> call(String file) {
             // lines[idx-1].grep(~/(@cinar.*)>?"/){ match, a -> name = a }
             // lines[idx+1].grep(~/(projects.*)>?"/){ match, a -> root = a }
             def matcher = lines[idx+1] =~ /((projects.*(?=")))/                
+            
+            println "root matcher[0] ${matcher[0]}"
             def root = matcher[0][0]
             
             matcher = lines[idx-1] =~ ~/((@cinar.*(?=")))/
+            println "name matcher[0] ${matcher[0]}"
             def name = matcher[0][0]
 
             
