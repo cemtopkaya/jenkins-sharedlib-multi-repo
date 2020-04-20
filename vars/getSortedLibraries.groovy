@@ -35,24 +35,15 @@ def ArrayList getDependencies(Map<String, Paket> collection){
     def libModuleNames = collection.keySet();
     def depNames = []
     for (entry in collection) {
-        
-    // }
-    // collection.eachWithIndex { entry, index ->
-
-        // println "$index Key: $entry.key \n\t Value: $entry.value \n\t Path: $entry.value.path \n\t Dependencies: $entry.value.dependencies"
-
-        // entry.value.dependencies.each{
-            for (d in entry.value.dependencies) {
-                
-            // }
-            // d-> // println "\n\t Dep Name: ${d} \n\t $depNames \n\t depNames.contains(d): ${depNames.contains(d)} \n***************"
-                if(!depNames.contains(d)) {
-                    depNames.add(d)
-                }
+        println "Key: $entry.key \n\t Value: $entry.value \n\t Path: $entry.value.path \n\t Dependencies: $entry.value.dependencies"
+        for (d in entry.value.dependencies) {
+            if(!depNames.contains(d)) {
+                depNames.add(d)
+            }
         }
     }
 
-    // println "---------- depNames: $depNames"
+    println "---------- depNames: $depNames"
 
     return depNames
 }
