@@ -22,8 +22,9 @@ class AngularParser {
         def lines = file.split("\n")
 
         lines.eachWithIndex{line, idx ->
+            println "line:${line} - idX:${idx}"
             def reg =  ~/.*"projectType": "library",/
-            if(reg.matcher(line).matches()){
+            if(reg.matcher(line).matches() && (idx-1>0) && (idx+1)<lines.size()){
                 // println "${idx} \t Current Line: ${line} \t Prev Line: ${lines[idx-1]} \t Next Line: ${lines[idx+1]}"
                 // lines[idx-1].grep(~/(@cinar.*)>?"/){ match, a -> name = a }
                 // lines[idx+1].grep(~/(projects.*)>?"/){ match, a -> root = a }
