@@ -10,9 +10,14 @@ def  Map<String, Paket> call(String prjDirPath) {
     def res = [:]
     
     def jsn = readJSON file: "${prjDirPath}/angular.json"
-    println "---------- jsn --------------"
-    println jsn
-    return null
+    jsn["projects"].each { k, v ->
+        println "---------- $k --------------"
+        if(k["projectType"]=="library"){            
+            res.put(k, new Paket(name, jsn[k]["root"], []))
+        }
+    }
+    println res
+    return res
     def file = readFile file: "${prjDirPath}/angular.json"
     def lines = file.split("\n")
     println "lines.size()::::::: ${lines.size()}"
