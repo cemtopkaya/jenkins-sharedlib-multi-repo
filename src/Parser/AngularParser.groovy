@@ -14,12 +14,12 @@ class AngularParser {
         def res = [:]
         
         // def path = "${projectDir}/angular.json".replace("\\","/")
-        // println "path::::::: ${path}"
         // // def data = readFile(file: 'developer/angular.json')
         // // println("data........data....:${data}")
         // println "File.class.name: ${File.class.name}"
         // def file = new File(path)
-        def lines = file.split("\n")
+        def lines = file.split("\r\n")
+        println "lines.size()::::::: ${lines.size()}"
 
         lines.eachWithIndex{line, idx ->
             println "line:${line} - idX:${idx}"
