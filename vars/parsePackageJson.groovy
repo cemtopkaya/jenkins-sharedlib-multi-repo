@@ -10,7 +10,7 @@ import com.cloudbees.groovy.cps.NonCPS
 def  ArrayList call(String jsonPath){
     def res = []
     
-    def lines = new File(jsonPath).readLines()
+    def lines = new File("${jsonPath}/package.json").readLines()
 
     lines.eachWithIndex { line, idx ->
         def matcher = line =~ /@.*(?=":)/
