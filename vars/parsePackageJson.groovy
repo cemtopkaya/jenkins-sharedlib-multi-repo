@@ -7,6 +7,7 @@ import java.util.regex.Pattern
 
 import com.cloudbees.groovy.cps.NonCPS
 
+@NonCPS
 def  ArrayList call(String fileContent){
     def res = []
     
