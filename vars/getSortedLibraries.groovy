@@ -15,8 +15,9 @@ def call(Map<String, Paket> param){
             //println "a: $a -- b: $b"
             //println "   a.dependencies: ${param.get(a).dependencies}"
             //println "   b.dependencies: ${param.get(b).dependencies}"
-            //println "   a.dep.contains(b): ${param.get(a).dependencies?.contains(b)}"
             
+            //println "   a.dep.contains(b): ${param.get(a).dependencies?.contains(b)}"
+
             //println "a: $a -- b: $b -- \n\t a.dependencies: ${param.get(a).dependencies}"
 
             if(param.get(a).dependencies == null) return -1
