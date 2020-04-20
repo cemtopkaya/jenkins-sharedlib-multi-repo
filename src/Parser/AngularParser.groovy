@@ -38,8 +38,9 @@ class AngularParser {
                 def name = matcher[0][0]
 
                 
-                // println "Name: ${name} , Path: ${root}"
-                def dir = "${projectDir}/${root}/package.json"
+                println "WORKSPACE: ${WORKSPACE}"
+                sh "pwd"
+                def dir = "${WORKSPACE}/developer/package.json"
                 // println dir
                 res.put(name, new Paket(name, root, PackageParser.parseJson(dir)))
             }
