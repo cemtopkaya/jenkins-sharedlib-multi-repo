@@ -12,9 +12,8 @@ def  ArrayList call(String libDirPath){
     def res = []
     
     def json = readJSON file: "${libDirPath}/package.json"
-    println "------- $json -----------"
+    
     json["peerDependencies"].each { k, v ->
-        println "keyyyyyyyyyyyy $k yyyyyyyyyek"
         if(k.startsWith("@")){
             res.add(k)
         }

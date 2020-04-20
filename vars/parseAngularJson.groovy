@@ -6,7 +6,6 @@ import com.cloudbees.groovy.cps.NonCPS
 
 //@NonCPS
 def  Map<String, Paket> call(String prjDirPath) {
-    println "parseAngularJson-parseAngularJson-parseAngularJson-parseAngularJson-parseAngularJson"
     def res = [:]
     
     def jsn = readJSON file: "${prjDirPath}/angular.json"
@@ -16,8 +15,9 @@ def  Map<String, Paket> call(String prjDirPath) {
             res.put(k, new Paket(k, jsn["projects"][k]["root"], []))
         }
     }
-    println res
+    
     return res
+    /*
     def file = readFile file: "${prjDirPath}/angular.json"
     def lines = file.split("\n")
     println "lines.size()::::::: ${lines.size()}"
@@ -42,4 +42,5 @@ def  Map<String, Paket> call(String prjDirPath) {
     }
 
     return res
+    */
 }

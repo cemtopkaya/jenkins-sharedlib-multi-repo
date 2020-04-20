@@ -36,7 +36,7 @@ def ArrayList getDependencies(Map<String, Paket> collection){
     def libModuleNames = collection.keySet();
     def depNames = []
     for (entry in collection) {
-        println "Key: $entry.key \n\t Value: $entry.value \n\t Path: $entry.value.path \n\t Dependencies: $entry.value.dependencies"
+        println "Key: $entry.key \n\t Value: $entry.value \n\t\t Path: $entry.value.path \n\t\t Dependencies: $entry.value.dependencies"
         for (d in entry.value.dependencies) {
             if(!depNames.contains(d)) {
                 depNames.add(d)
