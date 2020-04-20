@@ -7,7 +7,7 @@ import java.util.regex.Pattern
 
 import com.cloudbees.groovy.cps.NonCPS
 
-@NonCPS
+//@NonCPS
 def  ArrayList call(String absFilePath){
 // def  ArrayList call(String fileContent){
     def res = []
@@ -16,7 +16,7 @@ def  ArrayList call(String absFilePath){
     def json = readJSON file:absFilePath
     echo "peerDependencies:------------"
     echo json["peerDependencies"]
-    
+
     def fileContent = readFile file:absFilePath
     echo "fileContent: ${fileContent}"
     def lines = fileContent.split("\n")
