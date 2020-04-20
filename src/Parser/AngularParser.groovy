@@ -13,7 +13,9 @@ class AngularParser {
     def static Map<String, Paket> parseAngularJson(String projectDir){
         def res = [:]
         
-        def lines = new File(projectDir+"/angular.json").readLines()
+        def path = "${projectDir}/angular.json".replaceAll("\\","/")
+        println "path::::::: ${path}"
+        def lines = new File(path).readLines()
 
         lines.eachWithIndex{line, idx ->
             def reg =  ~/.*"projectType": "library",/
