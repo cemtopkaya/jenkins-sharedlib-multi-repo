@@ -13,7 +13,7 @@ def  Map<String, Paket> call(String prjDirPath) {
     jsn["projects"].each { k, v ->
         println "---------- $k --------------"
         if(jsn["projects"][k]["projectType"]=="library"){            
-            res.put(k, new Paket(name, jsn["projects"][k]["root"], []))
+            res.put(k, new Paket(k, jsn["projects"][k]["root"], []))
         }
     }
     println res
