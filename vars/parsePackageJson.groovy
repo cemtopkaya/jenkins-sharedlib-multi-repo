@@ -8,10 +8,10 @@ import java.util.regex.Pattern
 import com.cloudbees.groovy.cps.NonCPS
 
 //@NonCPS
-def  ArrayList call(String absolutePackageJsonPath){
+def  ArrayList call(String libDirPath){
     def res = []
     
-    def json = readJSON file:absolutePackageJsonPath
+    def json = readJSON file: "${libDirPath}/package.json"
     json["peerDependencies"].each { key, value ->
         if(key.startsWith("@")){
             res.add(key)

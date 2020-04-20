@@ -5,16 +5,11 @@ import java.util.regex.Pattern
 import com.cloudbees.groovy.cps.NonCPS
 
 @NonCPS
-def  Map<String, Paket> call(String file) {
+def  Map<String, Paket> call(String prjDirPath) {
     println "parseAngularJson-parseAngularJson-parseAngularJson-parseAngularJson-parseAngularJson"
     def res = [:]
     
-    // def path = "${projectDir}/angular.json".replace("\\","/")
-    // // def data = readFile(file: 'developer/angular.json')
-    // // println("data........data....:${data}")
-    // println "File.class.name: ${File.class.name}"
-    // def file = new File(path)
-    println "file::::::: ${file}"
+    def file = readFile file: "${prjDirPath}/angular.json"
     def lines = file.split("\n")
     println "lines.size()::::::: ${lines.size()}"
 
