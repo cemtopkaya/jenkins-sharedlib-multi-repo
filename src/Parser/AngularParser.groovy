@@ -23,7 +23,7 @@ class AngularParser {
         def lines = file.split("\r\n")
         println "lines.size()::::::: ${lines.size()}"
 
-        for (idx=0;idx<lines.size();i++){
+        for (def idx=0;idx<lines.size();i++){
             line = lines[i]   
             println "line:${line} - idX:${idx}"
             def reg =  ~/.*"projectType": "library",/
