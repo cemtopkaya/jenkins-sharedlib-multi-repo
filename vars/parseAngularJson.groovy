@@ -41,7 +41,7 @@ def  Map<String, Paket> call(String file) {
             println "WORKSPACE: ${WORKSPACE}"
             def dir = "${WORKSPACE}/developer/package.json"
             println "dirrrrrrrrrrrr: ${dir}"
-            def packageJsonPath = "${WORKSPACE}/developer/${root}/package.json"
+            def packageJsonPath = "./developer/${root}/package.json"
             println "packageJsonPath: ${packageJsonPath}"
             // def packageJsonLines = readFile(file: packageJsonPath)
             def packageJsonLines = new File(packageJsonPath).readLines()
