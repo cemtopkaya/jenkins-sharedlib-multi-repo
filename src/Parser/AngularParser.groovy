@@ -23,7 +23,7 @@ class AngularParser {
         def lines = file.split("\r\n")
         println "lines.size()::::::: ${lines.size()}"
 
-        for (def idx=0;idx<lines.size();i++){
+        for (def idx=0;idx<lines.size();idx++){
             line = lines[i]   
             println "line:${line} - idX:${idx}"
             def reg =  ~/.*"projectType": "library",/
@@ -38,9 +38,9 @@ class AngularParser {
                 def name = matcher[0][0]
 
                 
-                println "WORKSPACE: ${WORKSPACE}"
+                println "WORKSPACE: ${env.WORKSPACE}"
                 sh "pwd"
-                def dir = "${WORKSPACE}/developer/package.json"
+                def dir = "${env.WORKSPACE}/developer/package.json"
                 println "dirrrrrrrrrrrr: ${dir}"
                 res.put(name, new Paket(name, root, PackageParser.parseJson(dir)))
             }
