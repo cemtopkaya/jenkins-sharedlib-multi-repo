@@ -13,7 +13,7 @@ def  ArrayList call(String jsonPath){
     def lines = new File(jsonPath).readLines()
 
     lines.eachWithIndex { line, idx ->
-        def matcher = line =~ /@cinar.*(?=":)/
+        def matcher = line =~ /@.*(?=":)/
         if(matcher.size()>0){
             def dependency = matcher[0]
             res.add(dependency)

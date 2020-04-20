@@ -44,6 +44,7 @@ def  Map<String, Paket> call(String file) {
             def packageJsonPath = "./developer/${root}/package.json"
             println "packageJsonPath: ${packageJsonPath}"
             def packageJsonLines = readFile(file: packageJsonPath)
+            println "************* ---------- ******************"
             // def packageJsonLines = new File(packageJsonPath).readLines()
             println "packageJsonLines: ${packageJsonLines}"
             res.put(name, new Paket(name, root, parsePackageJson(dir)))
