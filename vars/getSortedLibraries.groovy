@@ -23,6 +23,7 @@ def call(Map<String, Paket> param){
             if(deps.contains(a)) return -1;
             // bağımlılıklarda yoksa en son derlensin
             return 1;
+            
         }
 
     def sorted = libs.sort{ a,b->fnSort(a,b) }
