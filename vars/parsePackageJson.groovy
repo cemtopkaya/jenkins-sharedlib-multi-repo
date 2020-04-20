@@ -15,7 +15,10 @@ def  ArrayList call(String absFilePath){
     // def lines = new File("${jsonPath}/package.json").readLines()
     def json = readJSON file:absFilePath
     echo "peerDependencies:------------"
-    echo json["peerDependencies"]
+    echo json["peerDependencies"].each { key, value ->
+        echo "Walked through key $key and value $value"
+        echo "Sınıf adı: ${key.class.name}"
+    }
 
     def fileContent = readFile file:absFilePath
     echo "fileContent: ${fileContent}"
