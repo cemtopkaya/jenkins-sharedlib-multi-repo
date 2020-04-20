@@ -6,7 +6,7 @@ import java.util.regex.Pattern
 import com.cloudbees.groovy.cps.NonCPS
 
 @NonCPS
-def call(Map<String, Paket> param){
+def ArrayList call(Map<String, Paket> param){
     def libs = param.keySet();
     def deps = getDependencies(param)
 
