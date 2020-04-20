@@ -41,7 +41,7 @@ class AngularParser {
                 println "WORKSPACE: ${WORKSPACE}"
                 sh "pwd"
                 def dir = "${WORKSPACE}/developer/package.json"
-                // println dir
+                println "dirrrrrrrrrrrr: ${dir}"
                 res.put(name, new Paket(name, root, PackageParser.parseJson(dir)))
             }
         }
