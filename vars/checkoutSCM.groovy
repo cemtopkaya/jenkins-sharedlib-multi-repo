@@ -28,4 +28,6 @@ def call(String url, String branch="master", String credId){
         ]]
     ]);
 
+    sh "rm -f package-lock.json"
+
 }
