@@ -1,12 +1,14 @@
+/**
+ * ./projects/@kapsam/kütüp_adı/package.json 
+ * içindeki bağımılıkları bulalım
+ */
 package Parser
 
-import Model.Paket
 import java.io.*;
 import groovy.io.*;
 import java.util.regex.Pattern
 
-import com.cloudbees.groovy.cps.NonCPS
-
+// import com.cloudbees.groovy.cps.NonCPS
 //@NonCPS
 def  ArrayList call(String libDirPath){
     def res = []
