@@ -1,3 +1,12 @@
+/**
+ * SCM'den verileri çekmek için bir ara katman olsun
+ */
+import java.io.*;
+import groovy.io.*;
+import java.util.regex.Pattern
+// import com.cloudbees.groovy.cps.NonCPS
+
+//@NonCPS
 def call(String url, String branch="master", String credId){
     echo "url:${url}, branch:${branch}, credId:${credId}"
     //sh "pwd && mkdir branch && cd branch && pwd"
