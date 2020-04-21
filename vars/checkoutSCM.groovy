@@ -28,7 +28,9 @@ def call(String url, String branch="master", String credId){
         ]]
     ]);
 
-    deleteDir "node_modules"
+    dir("node_modules"){
+        deleteDir()
+    }
     sh "rm -f package-lock.json"
 
 }
