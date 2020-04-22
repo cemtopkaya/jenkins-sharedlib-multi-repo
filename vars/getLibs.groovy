@@ -12,14 +12,21 @@ import java.util.regex.Pattern
 //@NonCPS
 def  Map<String, Paket> call(String prjDirPath) {
     def res = [:]
+    String angularJson = "$prjDirPath/angular.json"
     
-    def jsn = readJSON file: "${prjDirPath}/angular.json"
-    jsn["projects"].each { k, v ->
-        println "---------- $k --------------"
-        if(jsn["projects"][k]["projectType"]=="library"){            
-            res.put(k, new Paket(k, jsn["projects"][k]["root"], []))
+    try{
+        def jsn = readJSON file: angularJson
+        jsn["projects"].each { k, v ->
+            println "---------- $k --------------"
+            if(jsn["projects"][k]["projectType"]=="library"){            
+                res.put(k, new Paket(k, jsn["projects"][k]["root"], []))
+            }
         }
+        
+        return res
+
+    }catch(err){
+        println "-> Hata (getLibs): $angularJson işlenirken istisna oldu (Exception: $err)"   
     }
     
-    res
 }

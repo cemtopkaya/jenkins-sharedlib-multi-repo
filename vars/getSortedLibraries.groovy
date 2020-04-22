@@ -35,16 +35,21 @@ def ArrayList call(Map<String, Paket> param){
 def ArrayList getInternalDependencies(Map<String, Paket> collection){
     def libModuleNames = collection.keySet();
     def depNames = []
-    for (entry in collection) {
-        println "Key: $entry.key \n\t Value: $entry.value \n\t\t Path: $entry.value.path \n\t\t Dependencies: $entry.value.dependencies"
-        for (d in entry.value.dependencies) {
-            if(d.startsWith(entry.key.split("/")[0]) && !depNames.contains(d)) {
-                depNames.add(d)
+
+    try {
+        for (entry in collection) {
+            println "Key: $entry.key \n\t Value: $entry.value \n\t\t Path: $entry.value.path \n\t\t Dependencies: $entry.value.dependencies"
+            for (d in entry.value.dependencies) {
+                if(d.startsWith(entry.key.split("/")[0]) && !depNames.contains(d)) {
+                    depNames.add(d)
+                }
             }
         }
+
+        println "-> depNames: $depNames"
+        return depNames
+
+    }catch(err){
+        println "-> Hata (getInternalDependencies): istisna oldu (Exception: $err)"   
     }
-
-    println "---------- depNames: $depNames"
-
-    return depNames
 }
