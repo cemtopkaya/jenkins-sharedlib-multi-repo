@@ -11,6 +11,7 @@ import java.util.regex.Pattern
 
 //@NonCPS
 def  Map<String, Paket> call(String prjDirPath) {
+    println "------------------ getLibs ---------------"
     def res = [:]
     String angularJson = "$prjDirPath/angular.json"
     
