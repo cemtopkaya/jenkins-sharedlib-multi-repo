@@ -11,6 +11,7 @@ import java.util.regex.Pattern
 // import com.cloudbees.groovy.cps.NonCPS
 //@NonCPS
 def  ArrayList call(String libDirPath){
+    println "------------------ getLibDependencies ---------------"
     
     def res = []    
     String packageJson ="$libDirPath/package.json"
