@@ -10,7 +10,7 @@ import java.util.regex.Pattern
 // import com.cloudbees.groovy.cps.NonCPS
 
 //@NonCPS
-def  Map<String, Paket> call(String prjDirPath) {
+def call(String prjDirPath) {
     println "------------------ getLibs ---------------"
     def res = [:]
     String angularJson = "$prjDirPath/angular.json"
@@ -29,5 +29,4 @@ def  Map<String, Paket> call(String prjDirPath) {
     }catch(err){
         println "---*** Hata (getLibs): $angularJson işlenirken istisna oldu (Exception: $err)"   
     }
-    
 }
