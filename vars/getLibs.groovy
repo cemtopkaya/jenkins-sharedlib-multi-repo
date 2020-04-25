@@ -25,7 +25,7 @@ def Map<String, Paket> call(String prjDirPath) {
         }
         println ":::::::.res::::::"
         println res
-        println res.class.name
+        println res.getClass()   
         return res
 
     }catch(err){
