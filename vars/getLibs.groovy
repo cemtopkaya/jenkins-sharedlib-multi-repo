@@ -17,7 +17,7 @@ def Map<String, Paket> call(String prjDirPath) {
     def res = [:]
     String pathAngularJson = "$prjDirPath/angular.json"
     println "pathAngularJson: $pathAngularJson"
-    
+
     sh "ls -l"
     
     try{
@@ -25,7 +25,14 @@ def Map<String, Paket> call(String prjDirPath) {
         def varmi = fileExists pathAngularJson
 println varmi
 
-        def jsn = readJSON file: pathAngularJson
+        def contentOfAngularJson = sh(
+                        label: "Angular.json oku",
+                        returnStdout: true, 
+                        script: "cat $pathAngularJson"
+                    ).trim()
+                    
+        def jsn = readJSON  text: contentOfAngularJson, returnPojo: true
+        // def jsn = readJSON file: pathAngularJson
         jsn["projects"].each { k, v ->
             println "---------- $k --------------"
             if(jsn["projects"][k]["projectType"]=="library"){            
