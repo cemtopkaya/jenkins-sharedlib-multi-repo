@@ -33,7 +33,9 @@ def call(String url, String branch="master", String credId){
         // dir("node_modules"){
         //     deleteDir()
         // }
-        sh "rm -f package-lock.json"
+        if(fileExists file:"package-lock.json"){
+            sh "rm -f package-lock.json"
+        }
 
     }catch(err){
         println "-> Hata (checkoutSCM): istisna oldu (Exception: $err)"   
