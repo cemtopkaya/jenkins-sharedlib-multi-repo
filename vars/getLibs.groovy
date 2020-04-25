@@ -20,7 +20,8 @@ def Map<String, Paket> call(String prjDirPath) {
     
     try{
         println ">>> angular.json var mı?"
-        println fileExists pathAngularJson
+        def varmi = fileExists pathAngularJson
+println varmi
 
         def jsn = readJSON file: pathAngularJson
         jsn["projects"].each { k, v ->
