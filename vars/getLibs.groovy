@@ -16,6 +16,7 @@ def Map<String, Paket> call(String prjDirPath) {
     
     def res = [:]
     String pathAngularJson = "$prjDirPath/angular.json"
+    println "------- pathAngularJson: $pathAngularJson"
     
     try{
         def jsn = readJSON file: pathAngularJson
