@@ -9,6 +9,7 @@ import java.util.regex.Pattern
 //@NonCPS
 def call(String url, String branch="master", String credId){
     println "----------------- checkoutSCM -------------------"
+    println ">>>>> pwd: "+pwd()
     echo "url:${url}, branch:${branch}, credId:${credId}"
     //sh "pwd && mkdir branch && cd branch && pwd"
 
