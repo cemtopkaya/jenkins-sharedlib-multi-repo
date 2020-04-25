@@ -30,7 +30,8 @@ println varmi
                         returnStdout: true, 
                         script: "cat $pathAngularJson"
                     ).trim()
-                    
+println contentOfAngularJson
+
         def jsn = readJSON  text: contentOfAngularJson, returnPojo: true
         // def jsn = readJSON file: pathAngularJson
         jsn["projects"].each { k, v ->
