@@ -35,8 +35,7 @@ def ArrayList call(Map<String, Paket> param){
 
 @NonCPS
 def ArrayList getInternalDependencies(Map<String, Paket> collection){
-
-
+    
     def libModuleNames = collection.keySet();
     def depNames = []
 
