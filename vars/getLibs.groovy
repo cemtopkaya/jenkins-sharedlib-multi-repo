@@ -13,10 +13,10 @@ import java.util.regex.Pattern
 //@NonCPS
 def Map<String, Paket> call(String prjDirPath) {
     println "------------------ getLibs ---------------"
-    println "pathAngularJson: $pathAngularJson"
     
     def res = [:]
     String pathAngularJson = "$prjDirPath/angular.json"
+    println "pathAngularJson: $pathAngularJson"
     
     try{
         println ">>> angular.json var mı?"
