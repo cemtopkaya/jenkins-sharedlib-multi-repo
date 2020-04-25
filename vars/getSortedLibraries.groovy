@@ -46,10 +46,10 @@ def ArrayList getInternalDependencies(Map<String, Paket> collection){
             }
         }
 
-        println "-> depNames: $depNames"
+        println "---*** depNames: $depNames"
         return depNames
 
     }catch(err){
-        println "-> Hata (getInternalDependencies): istisna oldu (Exception: $err)"   
+        println "---*** Hata (getInternalDependencies): istisna oldu (Exception: $err)"   
     }
 }
