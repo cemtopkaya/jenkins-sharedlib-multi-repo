@@ -18,6 +18,8 @@ def Map<String, Paket> call(String prjDirPath) {
     String pathAngularJson = "$prjDirPath/angular.json"
     println "pathAngularJson: $pathAngularJson"
     
+    sh "ls -l"
+    
     try{
         println ">>> angular.json var mı?"
         def varmi = fileExists pathAngularJson
