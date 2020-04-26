@@ -27,5 +27,6 @@ def  ArrayList call(String libDirPath){
         return res.size()>0 ? res : null;    
     }catch(err){
         println "---*** Hata (getLibDependencies): $packageJson işlenirken istisna oldu (Exception: $err)"   
+        throw err
     }
 }

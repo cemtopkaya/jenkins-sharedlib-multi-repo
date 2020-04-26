@@ -36,7 +36,8 @@ def call(String url, String branch="master", String credId){
         }
 
     }catch(err){
-        echo "---*** Hata (checkoutSCM): istisna oldu (Exception: $err)"   
+        echo "---*** Hata (checkoutSCM): istisna oldu (Exception: $err)"  
+        throw err 
     }
 
 }

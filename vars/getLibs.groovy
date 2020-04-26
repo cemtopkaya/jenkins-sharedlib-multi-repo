@@ -31,6 +31,7 @@ def Map<String, Paket> call(String prjDirPath) {
 
     }catch(err){
         println "---*** Hata (getLibs): $pathAngularJson işlenirken istisna oldu (Exception: $err)"   
+        throw err
     }
     
 }
