@@ -30,6 +30,8 @@ def ArrayList call(Map<String, Paket> param){
 
     def sorted = libs.sort{ a,b->fnSort(a,b) }
 
+    println "---*** Sorted: "+sorted
+    
     return sorted
 }
 
