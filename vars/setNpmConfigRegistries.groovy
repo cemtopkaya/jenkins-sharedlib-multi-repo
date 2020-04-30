@@ -26,7 +26,7 @@ def call(Map<String,String> scopeRegistries){
         }
     } catch(err) {
         echo "---*** Hata (setNpmConfigRegistries): istisna oldu (Exception: $err)"  
-        throw 
+        throw err
     }
 
 }
