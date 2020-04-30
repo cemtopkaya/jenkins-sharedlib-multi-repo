@@ -13,9 +13,9 @@ def call(String registry, String pgk, String version){
         println "script: $script"
         def output = sh (
             label: "REST sorgusuyla verdaccio kontrol ediliyor: $script",
-            returnStatus: true,
+            returnStdout: true,
             script: script
-        ).trim()
+        )
         Integer expected = 1
         println "'"+output+"' - '$expected'"
         println output == expected
