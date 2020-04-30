@@ -3,10 +3,11 @@ class NpmPackage{
     String PackageScope
     String PackageName
     String Version
-
-    @Override
-    String toString(){
-        return "PackageScope: $PackageScope, PackageName: $PackageName, Version: $Version"
+    
+    NpmPackage(String packageScope, String packageName, String version){
+        this.PackageName = packageName
+        this.Version = version
+        this.PackageScope = packageScope
     }
 
     static NpmPackage parse(String fullName){
@@ -29,18 +30,17 @@ class NpmPackage{
         println "scope: $scope, name: $name, version: $version"
         return new NpmPackage(scope, name, version)
     }
-    
-    NpmPackage(String packageScope, String packageName, String version){
-        this.PackageName = packageName
-        this.Version = version
-        this.PackageScope = packageScope
+    @Override
+    String toString(){
+        return "PackageScope: $PackageScope, PackageName: $PackageName, Version: $Version"
     }
 
     Boolean isPublished(String registry){
-        this.fromApi(registry, this.PackageName)
+        def pkg = PackageScope ? "$PackageScope/$PackageName" : PackageName
+        return NpmPackage.fromApi(registry, pkg, Version)
     }
 
-    def fromApi(String registry, String pgk, String version){
+    static Boolean fromApi(String registry, String pgk, String version){
         println "----------------- isPackagePublished -------------------"
         
         try {
