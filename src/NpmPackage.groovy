@@ -14,6 +14,7 @@ class NpmPackage{
         int idx = scope ? 1 : 0
         name = fullName.split("/")[idx]
 
+println "name?.split(@).size(): "+name?.split("@")
         if(name?.split("@").size()>0){
             name = name.split("@")[0]
             version = name.split("@")[1]
