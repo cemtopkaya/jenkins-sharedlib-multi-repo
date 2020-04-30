@@ -4,6 +4,10 @@ class NpmPackage{
     String PackageName
     String Version
 
+    String toString(){
+        return "scope: $scope, name: $name, version: $version"
+    }
+
     static NpmPackage parse(String fullName){
         String scope, name, version
 
@@ -14,7 +18,7 @@ class NpmPackage{
         int idx = scope ? 1 : 0
         name = fullName.split("/")[idx]
 
-println "name?.split(@).size(): "+name?.split("@")
+        println "name?.split(@).size(): "+name?.split("@")
         if(name?.split("@").size()>0){
             String[] arr = name.split('@')
             name = arr[0]
