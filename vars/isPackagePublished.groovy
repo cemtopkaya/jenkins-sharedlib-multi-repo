@@ -17,7 +17,7 @@ def call(String registry, String pgk, String version){
             script: script
         )
         Integer expected = 1
-        println "'"+output+"'"
+        println "'"+output+"' - '$expected'"
         println output == expected
         println output.class.name
         Boolean isExist = ( expected== output)
