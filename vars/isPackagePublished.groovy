@@ -16,9 +16,12 @@ def call(String registry, String pgk, String version){
         )
     
         echo "--->>> is published - Version say?s?: $count"
+        echo "--->>> count as Integer: ${count as Integer}"
+        int iCount = count as Integer
+        echo "--->>> count as Integer: ${++iCount}"
+        echo "--->>> iCount>0: ${iCount>0}"
 
-        return count as Integer
-        }
+        return iCount>0
     } catch(err) {
         echo "---*** Hata (isPackagePublished): istisna oldu (Exception: $err)"  
         throw 
