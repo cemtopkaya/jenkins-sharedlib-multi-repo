@@ -3,11 +3,12 @@ class NpmPackage{
     String PackageScope
     String PackageName
     String Version
-    
-    NpmPackage(String packageScope, String packageName, String version){
+    def Context
+    NpmPackage(context, String packageScope, String packageName, String version){
         this.PackageName = packageName
         this.Version = version
         this.PackageScope = packageScope
+        this.Context = context
     }
 
     static NpmPackage parse(String fullName){
@@ -37,7 +38,8 @@ class NpmPackage{
 
     Boolean isPublished(String registry){
         def pkg = PackageScope ? "$PackageScope/$PackageName" : PackageName
-        return NpmPackage.fromApi(registry, pkg, Version)
+        return isPackagePublished(registry, pkg, Version)
+        // return NpmPackage.fromApi(registry, pkg, Version)
     }
 
     static Boolean fromApi(String registry, String pgk, String version){
@@ -68,7 +70,7 @@ class NpmPackage{
 
     def fromNpmView(String registry, String pgk, String version){
         npmViewScript = "npm view ${pgk}@${version} ${registry}"
-        echo "** Aynı versiyon kullanılmış mı kontrolü için script > npmViewScript: ${npmViewScript}"
+        println "** Aynı versiyon kullanılmış mı kontrolü için script > npmViewScript: ${npmViewScript}"
         /* Eğer npm view aranan paketi bulamazsa sh komutu 1 (Error 404) ile hata fırlatarak çıkacak!
         * Bu yüzden kod kırılmasın diye "returnStatus: true" ile sh execute edilecek ve exit code okunacak.
         * Exit code 0'dan farklıysa ise yani "npm ERR! code E404" ile npm view hata fırlatarak çıkış yapmışsa bileceğiz ki; paket yok!
