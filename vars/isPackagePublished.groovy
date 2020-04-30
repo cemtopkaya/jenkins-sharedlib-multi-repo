@@ -7,8 +7,9 @@ def call(String registry, String pgk, String version){
     println "----------------- isPackagePublished -------------------"
     
     try {
-        println ">>> registry: $registry , pgk: $pgk , version: $version "
-        // sh "curl -s http://localhost:4873/@kapsam2/kutup11 | awk '/0.0.1/{count++;} END{print count=="" ? 0 : count}'"
+        // println ">>> registry: $registry , pgk: $pgk , version: $version "
+        // sh "curl -s http://192.168.13.33:4873/@cinar/cn-main | awk '/version.*:.*0.0.1/{count++;} END{isExist = (length(count)>0); print isExist}'"
+        
         String script = "curl -s $registry/$pgk | awk '/version.*:.*$version/{count++;} END{isExist = (length(count)>0); print isExist}'"
         println "script: $script"
         String output = sh (
@@ -16,13 +17,9 @@ def call(String registry, String pgk, String version){
             returnStdout: true,
             script: script
         ).trim()
-        Integer expected = 1
-        println "'"+output+"' - '$expected'"
-        println output == expected
-        println output.class.name
-        Boolean isExist = ( "1"== output)
+        Boolean isExist = ( "1" == output)
     
-        echo "--->>> is published - Version say?s?: "+isExist
+        echo "--->>> (isPackagePublished) >>> '$registry' K?t???nde '$pgk@$version' versiyonu var m?: "+isExist
 
         return isExist
     } catch(err) {
