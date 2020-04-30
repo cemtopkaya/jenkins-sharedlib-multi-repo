@@ -98,6 +98,30 @@ class NpmPackage{
         }
     }
 
+    def setNpmConfigRegistries(Map<String,String> scopeRegistries){
+    println "----------------- setNpmConfigRegistries -------------------"
+    
+        try {
+            scopeRegistries.each{
+                def scope = it.key?:""
+                println "scope: $scope"
+                if(scope){
+                    scope+=":"
+                }
+                script = "npm config set ${scope}registry ${it.value} --userconfig ./.npmrc"
+                Context.sh(
+                    label: "npm config set registry....",
+                    script: script,
+                    returnStdout: false
+                )
+            }
+        } catch(err) {
+            println "---*** Hata (setNpmConfigRegistries): istisna oldu (Exception: $err)"  
+            throw err
+        }
+
+    }
+
 
 
 }
