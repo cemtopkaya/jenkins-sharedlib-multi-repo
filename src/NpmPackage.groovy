@@ -37,7 +37,7 @@ class NpmPackage{
     }
 
     Boolean isPublished(String registry){
-        String pkg = PackageScope ? "$PackageScope/$PackageName" : PackageName
+        String pkg = PackageScope ? PackageScope+"/"+PackageName : PackageName
         return isPackagePublished(registry, pkg, Version)
         // return NpmPackage.fromApi(registry, pkg, Version)
     }
