@@ -17,7 +17,7 @@ def call(String registry, String pgk, String version){
             script: script
         )
         println "'"+output+"'"
-        println output>0
+        println output as Integer > 0 as Integer
         println output.class.name
         Boolean isExist = ( 1== output)
     
