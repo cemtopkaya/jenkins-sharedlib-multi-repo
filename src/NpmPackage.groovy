@@ -4,7 +4,7 @@ class NpmPackage{
     String PackageName
     String Version
     def Context
-    NpmPackage(context, String packageScope, String packageName, String version){
+    NpmPackage(String packageScope, String packageName, String version){
         this.PackageName = packageName
         this.Version = version
         this.PackageScope = packageScope
