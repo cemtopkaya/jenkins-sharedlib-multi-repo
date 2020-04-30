@@ -12,7 +12,7 @@ class NpmPackage{
         Context = context
     }
 
-    static NpmPackage parse(String fullName){
+    static NpmPackage parse(def context, String fullName){
         String scope, name, version
 
         if(fullName[0]=="@"){
@@ -30,9 +30,9 @@ class NpmPackage{
         }
 
         println "scope: $scope, name: $name, version: $version"
-        return new NpmPackage(scope, name, version)
+        return new NpmPackage(context, scope, name, version)
     }
-    
+
     @Override
     String toString(){
         return "PackageScope: $PackageScope, PackageName: $PackageName, Version: $Version"
@@ -43,7 +43,7 @@ class NpmPackage{
         return NpmPackage.fromApi(registry, pkg, Version)
     }
 
-    static Boolean fromApi(String registry, String pgk, String version){
+    private static Boolean fromApi(String registry, String pgk, String version){
         println "----------------- isPackagePublished -------------------"
         
         try {
@@ -69,7 +69,7 @@ class NpmPackage{
 
     }
 
-    def fromNpmView(String registry, String pgk, String version){
+    private def fromNpmView(String registry, String pgk, String version){
         npmViewScript = "npm view ${pgk}@${version} ${registry}"
         println "** Aynı versiyon kullanılmış mı kontrolü için script > npmViewScript: ${npmViewScript}"
         /* Eğer npm view aranan paketi bulamazsa Context.sh komutu 1 (Error 404) ile hata fırlatarak çıkacak!
