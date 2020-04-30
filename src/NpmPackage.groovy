@@ -8,7 +8,7 @@ class NpmPackage{
         String scope, name, version
 
         if(fullName[0]=="@"){
-            scope = fullName.split("/")[0])
+            scope = fullName.split("/")[0]
         }
 
         int idx = scope ? 1 : 0
