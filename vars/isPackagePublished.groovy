@@ -24,7 +24,7 @@ def call(String registry, String pgk, String version){
         return iCount>0
     } catch(err) {
         echo "---*** Hata (isPackagePublished): istisna oldu (Exception: $err)"  
-        throw 
+        throw err
     }
 
 }
