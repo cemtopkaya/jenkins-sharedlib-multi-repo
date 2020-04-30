@@ -15,7 +15,7 @@ def call(String registry, String pgk, String version){
             script: "curl -s $registry/$pgk | awk '/$version/{count++;} END{print count=='' ? 0 : count}'"
         )
     
-        echo ">>> is published - Version say?s?: $count"
+        echo "--->>> is published - Version say?s?: $count"
 
         return count as Integer
         }
