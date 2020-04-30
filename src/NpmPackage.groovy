@@ -16,7 +16,7 @@ class NpmPackage{
 
 println "name?.split(@).size(): "+name?.split("@")
         if(name?.split("@").size()>0){
-            arr = name.split("@")
+            String[] arr = name.split('@')
             name = arr[0]
             version = arr[1]
         }
