@@ -3,9 +3,7 @@
  * paket ve versiyon y?kl? m? kontrol eder
  */
 
-//package org.hede
-
-static def call(String registry, String pgk, String version){
+def call(String registry, String pgk, String version){
     // TODO: Check if curl exists try fromApi otherwise fromNpmView
     return fromApi(registry, pgk, version)
 }

@@ -3,12 +3,13 @@ class NpmPackage{
     String PackageScope
     String PackageName
     String Version
-    def Context
-    NpmPackage(String packageScope, String packageName, String version){
+    private static def Context
+
+    NpmPackage(def context, String packageScope, String packageName, String version){
         this.PackageName = packageName
         this.Version = version
         this.PackageScope = packageScope
-        this.Context = context
+        Context = context
     }
 
     static NpmPackage parse(String fullName){
@@ -31,6 +32,7 @@ class NpmPackage{
         println "scope: $scope, name: $name, version: $version"
         return new NpmPackage(scope, name, version)
     }
+    
     @Override
     String toString(){
         return "PackageScope: $PackageScope, PackageName: $PackageName, Version: $Version"
@@ -38,8 +40,7 @@ class NpmPackage{
 
     Boolean isPublished(String registry){
         String pkg = PackageScope ? PackageScope+"/"+PackageName : PackageName
-        return isPackagePublished(registry, pkg, Version)
-        // return NpmPackage.fromApi(registry, pkg, Version)
+        return NpmPackage.fromApi(registry, pkg, Version)
     }
 
     static Boolean fromApi(String registry, String pgk, String version){
@@ -47,11 +48,11 @@ class NpmPackage{
         
         try {
             // println ">>> registry: $registry , pgk: $pgk , version: $version "
-            // sh "curl -s http://192.168.13.33:4873/@cinar/cn-main | awk '/version.*:.*0.0.1/{count++;} END{isExist = (length(count)>0); print isExist}'"
+            // Context.sh "curl -s http://192.168.13.33:4873/@cinar/cn-main | awk '/version.*:.*0.0.1/{count++;} END{isExist = (length(count)>0); print isExist}'"
             
             String script = "curl -s $registry/$pgk | awk '/version.*:.*$version/{count++;} END{isExist = (length(count)>0); print isExist}'"
             println "script: $script"
-            String output = sh (
+            String output = Context.sh (
                 label: "REST sorgusuyla verdaccio kontrol ediliyor: $script",
                 returnStdout: true,
                 script: script
@@ -71,18 +72,18 @@ class NpmPackage{
     def fromNpmView(String registry, String pgk, String version){
         npmViewScript = "npm view ${pgk}@${version} ${registry}"
         println "** Aynı versiyon kullanılmış mı kontrolü için script > npmViewScript: ${npmViewScript}"
-        /* Eğer npm view aranan paketi bulamazsa sh komutu 1 (Error 404) ile hata fırlatarak çıkacak!
-        * Bu yüzden kod kırılmasın diye "returnStatus: true" ile sh execute edilecek ve exit code okunacak.
+        /* Eğer npm view aranan paketi bulamazsa Context.sh komutu 1 (Error 404) ile hata fırlatarak çıkacak!
+        * Bu yüzden kod kırılmasın diye "returnStatus: true" ile Context.sh execute edilecek ve exit code okunacak.
         * Exit code 0'dan farklıysa ise yani "npm ERR! code E404" ile npm view hata fırlatarak çıkış yapmışsa bileceğiz ki; paket yok!
         * Eğer normal çıkış yapmışsa bu kez çıktıyı almak için "returnStdout: true" anahtarıyla tekrar paket sorgulanacak
         **/
         
-        npmViewStatusCode = sh(returnStatus: true, script: "$npmViewScript")
+        npmViewStatusCode = Context.sh(returnStatus: true, script: "$npmViewScript")
         if(npmViewStatusCode == 1){
             result = false
         }else {
             try {
-                checkVersionPublished = sh(
+                checkVersionPublished = Context.sh(
                     label: "$npmViewScript",
                     returnStdout: true, 
                     script: "${npmViewScript} | wc -m"
@@ -92,6 +93,7 @@ class NpmPackage{
             }
             catch (err) {
                 println "npm view hata fırlattı: $err"
+                throw err
             }
         }
     }
