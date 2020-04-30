@@ -4,6 +4,7 @@ class NpmPackage{
     String PackageName
     String Version
 
+    @Override
     String toString(){
         return "scope: $scope, name: $name, version: $version"
     }
