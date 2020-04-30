@@ -11,11 +11,11 @@ def call(String registry, String pgk, String version){
         // sh "curl -s http://localhost:4873/@kapsam2/kutup11 | awk '/0.0.1/{count++;} END{print count=="" ? 0 : count}'"
         String script = "curl -s $registry/$pgk | awk '/$version/{count++;} END{isExist = (length(count)>0); print isExist}'"
         println "script: $script"
-        def isExist = sh (
+        Boolean isExist = sh (
             label: "REST sorgusuyla verdaccio kontrol ediliyor: $script",
             returnStatus: true,
             script: script
-        ) as Boolean
+        )
     
         echo "--->>> is published - Version say?s?: $isExist"
 
