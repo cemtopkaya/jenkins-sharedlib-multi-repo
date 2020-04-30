@@ -56,11 +56,11 @@ class NpmPackage{
             ).trim()
             Boolean isExist = ( "1" == output)
         
-            echo "--->>> (isPackagePublished) >>> '$registry' Kütüğünde '$pgk@$version' versiyonu var mı: "+isExist
+            println "--->>> (isPackagePublished) >>> '$registry' Kütüğünde '$pgk@$version' versiyonu var mı: "+isExist
 
             return isExist
         } catch(err) {
-            echo "---*** Hata (isPackagePublished): istisna oldu (Exception: $err)"  
+            println "---*** Hata (isPackagePublished): istisna oldu (Exception: $err)"  
             throw err
         }
 
