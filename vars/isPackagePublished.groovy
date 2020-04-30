@@ -15,7 +15,7 @@ def call(String registry, String pgk, String version){
             label: "REST sorgusuyla verdaccio kontrol ediliyor: $script",
             returnStatus: true,
             script: script
-        ).toBoolean()
+        )>0
     
         echo "--->>> is published - Version say?s?: $isExist"
 
