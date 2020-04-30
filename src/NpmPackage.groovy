@@ -16,8 +16,9 @@ class NpmPackage{
 
 println "name?.split(@).size(): "+name?.split("@")
         if(name?.split("@").size()>0){
-            name = name.split("@")[0]
-            version = name.split("@")[1]
+            arr = name.split("@")[0]
+            name = arr[0]
+            version = arr[1]
         }
 
         println "scope: $scope, name: $name, version: $version"
