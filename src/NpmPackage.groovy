@@ -6,7 +6,7 @@ class NpmPackage{
 
     @Override
     String toString(){
-        return "scope: $scope, name: $name, version: $version"
+        return "PackageScope: $PackageScope, PackageName: $PackageName, Version: $Version"
     }
 
     static NpmPackage parse(String fullName){
