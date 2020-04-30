@@ -11,7 +11,7 @@ def call(String registry, String pgk, String version){
         // sh "curl -s http://localhost:4873/@kapsam2/kutup11 | awk '/0.0.1/{count++;} END{print count=="" ? 0 : count}'"
         String script = "curl -s $registry/$pgk | awk '/$version/{count++;} END{isExist = (length(count)>0); print isExist}'"
         println "script: $script"
-        def output = sh (
+        String output = sh (
             label: "REST sorgusuyla verdaccio kontrol ediliyor: $script",
             returnStdout: true,
             script: script
@@ -20,7 +20,7 @@ def call(String registry, String pgk, String version){
         println "'"+output+"' - '$expected'"
         println output == expected
         println output.class.name
-        Boolean isExist = ( expected== output)
+        Boolean isExist = ( "1"== output)
     
         echo "--->>> is published - Version say?s?: "+isExist
 
