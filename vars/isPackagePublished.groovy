@@ -16,10 +16,11 @@ def call(String registry, String pgk, String version){
             returnStatus: true,
             script: script
         )
+        Integer expected = 1
         println "'"+output+"'"
-        println output == 1
+        println output == expected
         println output.class.name
-        Boolean isExist = ( 1== output)
+        Boolean isExist = ( expected== output)
     
         echo "--->>> is published - Version say?s?: "+isExist
 
