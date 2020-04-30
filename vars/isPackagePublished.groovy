@@ -17,7 +17,7 @@ def call(String registry, String pgk, String version){
             script: script
         )
         println output.class.name
-        Boolean isExist = ( 1== )
+        Boolean isExist = ( 1== output)
     
         echo "--->>> is published - Version say?s?: "+isExist
 
