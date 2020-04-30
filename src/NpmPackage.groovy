@@ -5,6 +5,10 @@ class NpmPackage{
     String Version
     private static def Context
 
+    String getScopedPackageName(){
+        return PackageScope ? PackageScope+"/"+PackageName : PackageName
+    } 
+
     NpmPackage(def context, String packageScope, String packageName, String version){
         this.PackageName = packageName
         this.Version = version
@@ -99,12 +103,12 @@ class NpmPackage{
     }
 
     def setNpmConfigRegistries(Map<String,String> scopeRegistries){
-    println "----------------- setNpmConfigRegistries -------------------"
+        println "----------------- setNpmConfigRegistries -------------------"
     
         try {
             scopeRegistries.each{
                 def scope = it.key?:""
-                println "scope: $scope"
+                println ">> scope: $scope"
                 if(scope){
                     scope+=":"
                 }
@@ -123,5 +127,48 @@ class NpmPackage{
     }
 
 
+    def unpublish(String registry, String packageVersion=null){
+        println "----------------- unpublish -----------------"
+
+        def script = "npm unpublish ${getScopedPackageName()}@${packageVersion?:Version}  --regitry=$registry"
+        def label = "Unpublish Package: $script"
+        try {
+            Context.sh (
+                label: label,
+                returnStatus: false,
+                script: script
+            )
+        }
+        catch (err) {
+            println "---*** Hata (unpublish): $script çalıştırılırken istisna oldu (Exception: $err)"
+        }
+    }
+
+    def publish(packageSrcPath, packageVersion="", Boolean force=false){
+        println "----------------- publishIfNeeded -----------------"
+                    
+        println "NPM Package Publishing (${getScopedPackageName()})"
+        Context.dir(packageSrcPath){
+            def shStatusCode = 0
+            try {
+                def label = ""
+                def script = ""
+
+                script = "npm publish ${registry ? '--registry='+registry : ''} ${force ? '--force' : ''}"
+                label = "Publishing: $libDistFolderPath -- $script"
+                                
+                shStatusCode = Context.sh (
+                    label: label,
+                    script: script,
+                    returnStatus: true
+                )
+            }
+            catch (err) {
+                println "---*** Hata (publishIfNeeded): $script çalıştırılırken istisna oldu (Exception: $err)"   
+            }
+            
+            checkPublishStatus(packageName, packageVersion)
+        }
+    }
 
 }
