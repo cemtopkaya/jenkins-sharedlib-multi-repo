@@ -19,9 +19,9 @@ def call(Map<String,String> scopeRegistries){
             if(scope){
                 scope+=":"
             }
-            echo "scope: $scope"
+            echo ">>> scope: $scope"
             script = "npm config set ${scope}registry ${it.value} --userconfig ./.npmrc"
-            echo "script: $script"
+            echo ">>> script: $script"
         }
     }catch(err){
         echo "---*** Hata (checkoutSCM): istisna oldu (Exception: $err)"  
