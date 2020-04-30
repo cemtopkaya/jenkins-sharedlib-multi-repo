@@ -102,19 +102,19 @@ class NpmPackage{
         }
     }
 
-    def setNpmConfigRegistries(Map<String,String> scopeRegistries){
+    def setNpmConfigRegistries(Map<String,String> scopeRegistries, Boolean isGlobal=false){
         println "----------------- setNpmConfigRegistries -------------------"
     
         try {
             scopeRegistries.each{
                 def scope = it.key?:""
                 println ">> scope: $scope"
-                if(scope){
-                    scope+=":"
-                }
-                script = "npm config set ${scope}registry ${it.value} --userconfig ./.npmrc"
+                def key = scope ? "$scope:registry" : "registry"
+                def value = it.value
+                
+                script = "npm config set $key $value ${isGlobal ? : "--userconfig ./.npmrc" : ""}"
                 Context.sh(
-                    label: "npm config set registry....",
+                    label: "npm config set registry : $script",
                     script: script,
                     returnStdout: false
                 )
