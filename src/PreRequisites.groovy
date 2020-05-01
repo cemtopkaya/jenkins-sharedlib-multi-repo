@@ -1,11 +1,11 @@
 class PreRequisites {
     static def Context
 
-    def instAll(def context){
-        PreRequisites.Context = context
-        
+    def instAll(def ctx){
+        PreRequisites.Context = ctx
+
          try {
-            is_node_installed = Context.sh(
+            is_node_installed = ctx.sh(
                 label: "NODE Yüklü mü?",
                 returnStdout: true, 
                 script: "whereis node | grep ' ' -ic"
@@ -14,7 +14,7 @@ class PreRequisites {
         catch (exception) { PreRequisites.installNodeJs() }
 
         // try {
-        //     angular_cli_version =  sh(
+        //     angular_cli_version =  ctx.sh(
         //         label: "Angular CLI Yüklü mü?",
         //         returnStdout: true, 
         //         script: "ng --version | awk '/8.3/{count=0; count++} END{print count == 0 ? 0 : count}'"
@@ -22,7 +22,7 @@ class PreRequisites {
         //     )
 
         //     // yüklü ancak 8 versiyonu değil
-        //     if(angular_cli_version == "0"){ fnInstallAngularCli() }
+        //     if(angular_cli_version == "0"){ PreRequisites.installAngularCli() }
         // }
         // catch (err) { PreRequisites.installAngularCli() }
     }
