@@ -188,14 +188,14 @@ class NpmPackage{
         def userName = _userName ?: "jenkins"
         def pass = _pass ?: "service"
         def email = _email ?: "jenkins@service.com"
-        def registry = _registry ?: params.NPM_REGISTRY.replace('--registry=','')
+        def registry = _registry ?: ""
         println "userName: $userName, pass: $pass, email: $email, registry: $registry"
 
         NpmPackage.installNpmCliLogin()
 
         def cikti = Context.sh (
             label: "npm-cli-login ile Login oluyoruz",
-            script: "npm-cli-login -u $userName -p $pass -e $email -r $registry",
+            script: "npm-cli-login -u $userName -p $pass -e $email ${registry ? '-r $registry' :  ''}",
             returnStdout: false
         )
     }
