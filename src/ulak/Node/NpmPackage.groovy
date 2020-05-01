@@ -198,7 +198,7 @@ class NpmPackage{
         }
     }
 
-    static def installPackages(def ctx, String sourceFolder, String registry, String[] args=[]){
+    static def installPackages(def ctx, String sourceFolder, String registry, ArrayList args=[]){
         Context = ctx
         println ">>> sourceFolder: "+sourceFolder
         Context.dir(sourceFolder){
