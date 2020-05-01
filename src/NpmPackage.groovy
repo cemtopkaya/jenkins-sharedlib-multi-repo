@@ -144,30 +144,42 @@ class NpmPackage{
         }
     }
 
-    def publish(packageSrcPath, packageVersion="", Boolean force=false){
+    def publish(packageSrcPath, Boolean force=false){
         println "----------------- publishIfNeeded -----------------"
                     
         println "NPM Package Publishing (${getScopedPackageName()})"
         Context.dir(packageSrcPath){
-            def shStatusCode = 0
             try {
-                def label = ""
-                def script = ""
-
-                script = "npm publish ${registry ? '--registry='+registry : ''} ${force ? '--force' : ''}"
-                label = "Publishing: $libDistFolderPath -- $script"
+                def script = "npm publish  ${force ? '--force' : ''}   ${registry ? '--registry='+registry : ''}"
+                def label = "Publishing: $libDistFolderPath -- $script"
                                 
-                shStatusCode = Context.sh (
+                def shStatusCode = Context.sh (
                     label: label,
                     script: script,
                     returnStatus: true
                 )
             }
             catch (err) {
-                println "---*** Hata (publishIfNeeded): $script çalıştırılırken istisna oldu (Exception: $err)"   
+                println "---*** Hata (publishIfNeeded): $script çalıştırılırken istisna oldu (Exception: $err)"
+                throw err
             }
-            
-            checkPublishStatus(packageName, packageVersion)
+        }
+    }
+
+    static def installPackages(String sourceFolder, String registry, String[] args=[]){
+        println ">>> sourceFolder: "+sourceFolder
+        Context.dir(sourceFolder){
+            Boolean is_nodemodules_exits = Context.fileExists("$sourceFolder/node_modules")
+
+            if( is_nodemodules_exits == false){
+                println "*** NODE_MODULES Yok! NPM paketlerini yükleyeceğiz"
+                args.push("--registry $registry")
+                String npm_install = "npm install "+args.join(" ")
+                //sh "npm  --no-bin-links --cache-min Infinity install"
+                Context.sh "pwd && " + npm_install
+            }else{
+                println "*** NODE_MODULES var ve tekrar NPM paketlerini yüklemeyelim"
+            }
         }
     }
 
