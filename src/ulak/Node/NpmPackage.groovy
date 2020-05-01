@@ -1,6 +1,7 @@
 package ulak.Node
 
 import ulak.Model.* 
+import ulak.Parser.* 
 
 class NpmPackage{
 
