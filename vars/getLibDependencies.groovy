@@ -2,7 +2,7 @@
  * ./projects/@kapsam/kütüp_adı/package.json 
  * içindeki bağımılıkları bulalım
  */
-package ulak.Parser
+package Parser
 
 import java.io.*;
 import groovy.io.*;

@@ -1,4 +1,4 @@
-import ulak.Model.Paket
+import Model.Paket
 import java.io.*;
 import groovy.io.*;
 import java.util.regex.Pattern
