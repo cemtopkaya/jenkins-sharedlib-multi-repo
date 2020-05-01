@@ -1,5 +1,5 @@
 class PreRequisites {
-    def Context
+    static def Context
 
     PreRequisites(def context){
         Context = context
