@@ -144,7 +144,7 @@ class NpmPackage{
         }
     }
 
-    def publish(packageSrcPath, Boolean force=false){
+    def publish(String registry, String packageSrcPath, Boolean force=false){
         println "----------------- publishIfNeeded -----------------"
                     
         println "NPM Package Publishing (${getScopedPackageName()})"
