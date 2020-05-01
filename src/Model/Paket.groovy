@@ -1,5 +1,7 @@
 package Model
 
+import ulak.NPM.*
+
 class Paket implements Serializable{
     String name
     String path

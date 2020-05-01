@@ -1,3 +1,5 @@
+package ulak.NPM
+
 class NpmPackage{
 
     String PackageScope
