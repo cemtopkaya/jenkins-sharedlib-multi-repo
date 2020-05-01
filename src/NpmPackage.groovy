@@ -160,7 +160,7 @@ class NpmPackage{
                 )
             }
             catch (err) {
-                println "---*** Hata (publishIfNeeded): $script çalıştırılırken istisna oldu (Exception: $err)"
+                println "---*** Hata (publishIfNeeded): istisna oldu (Exception: $err)"
                 throw err
             }
         }
