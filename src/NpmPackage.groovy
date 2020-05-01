@@ -112,7 +112,7 @@ class NpmPackage{
                 def key = scope ? "$scope:registry" : "registry"
                 def value = it.value
                 
-                script = "npm config set $key $value ${isGlobal ? '' : '--userconfig ./.npmrc'}"
+                def script = "npm config set $key $value ${isGlobal ? '' : '--userconfig ./.npmrc'}"
                 Context.sh(
                     label: "npm config set registry : $script",
                     script: script,
