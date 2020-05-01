@@ -1,8 +1,8 @@
 package ulak.Sorter
 
-import Model.Paket
-import java.io.*;
-import groovy.io.*;
+import ulak.Model.*
+import java.io.*
+import groovy.io.*
 import java.util.regex.Pattern
 import com.cloudbees.groovy.cps.NonCPS
 
