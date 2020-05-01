@@ -5,7 +5,7 @@ class PreRequisites {
         PreRequisites.Context = context
     }
 
-    def inst_all(){
+    def instAll(){
          try {
             is_node_installed = Context.sh(
                 label: "NODE Yüklü mü?",
