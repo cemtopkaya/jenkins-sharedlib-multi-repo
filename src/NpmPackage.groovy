@@ -102,7 +102,7 @@ class NpmPackage{
         }
     }
 
-    def setNpmConfigRegistries(def ctx = Context, Map<String,String> scopeRegistries, Boolean isGlobal=false){
+    static def setNpmConfigRegistries(def ctx, Map<String,String> scopeRegistries, Boolean isGlobal=false){
         println "----------------- setNpmConfigRegistries -------------------"
         
         println "ctx: $ctx"
@@ -115,7 +115,7 @@ class NpmPackage{
                 def value = it.value
                 
                 def script = "npm config set $key $value ${isGlobal ? '' : '--userconfig ./.npmrc'}"
-                Context.sh(
+                ctx.sh(
                     label: "npm config set registry : $script",
                     script: script,
                     returnStdout: false
