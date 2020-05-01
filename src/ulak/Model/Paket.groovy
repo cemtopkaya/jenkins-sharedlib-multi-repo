@@ -1,6 +1,6 @@
 package ulak.Model
 
-import NPM.NpmPackage
+import ulak.NPM.NpmPackage
 
 class Paket implements Serializable{
     String name
