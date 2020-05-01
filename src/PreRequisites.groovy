@@ -1,7 +1,7 @@
 class PreRequisites {
     static def Context
 
-    def instAll(def ctx){
+    public def instAll(def ctx){
         PreRequisites.Context = ctx
 
          try {
@@ -27,7 +27,7 @@ class PreRequisites {
         // catch (err) { PreRequisites.installAngularCli() }
     }
 
-    static def installNodeJs(){
+    private static def installNodeJs(){
         try {
             Context.sh(
                 label: "NodeJs Yükleniyor",
@@ -46,7 +46,7 @@ class PreRequisites {
         }
     }
 
-    static def installAngularCli(){
+    private static def installAngularCli(){
         try {
             Context.sh(
                 label: "Angular CLI Yükleniyor",
