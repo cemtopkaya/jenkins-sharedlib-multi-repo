@@ -5,7 +5,7 @@ class PreRequisites {
         Context = context
 
         try {
-            is_node_installed = sh(
+            is_node_installed = Context.sh(
                 label: "NODE Yüklü mü?",
                 returnStdout: true, 
                 script: "whereis node | grep ' ' -ic"
