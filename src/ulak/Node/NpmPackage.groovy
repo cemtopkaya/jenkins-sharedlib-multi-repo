@@ -206,7 +206,7 @@ class NpmPackage{
 
             if( is_nodemodules_exits == false){
                 println "*** NODE_MODULES Yok! NPM paketlerini yükleyeceğiz"
-                args.push("--registry "+registry)
+                //args.push("--registry "+registry)
                 String npm_install = "npm install "+args.join(" ")
                 //sh "npm  --no-bin-links --cache-min Infinity install"
                 Context.sh "pwd && " + npm_install
