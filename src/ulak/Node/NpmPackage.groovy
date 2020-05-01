@@ -1,4 +1,5 @@
 package ulak.Node
+import ulak.Model.Paket 
 
 class NpmPackage{
 
