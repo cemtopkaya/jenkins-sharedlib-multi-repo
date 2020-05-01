@@ -2,7 +2,7 @@ class PreRequisites {
     static def Context
 
     PreRequisites(def context){
-        Context = context
+        PreRequisites.Context = context
 
         try {
             is_node_installed = Context.sh(
