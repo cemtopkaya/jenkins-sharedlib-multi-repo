@@ -151,7 +151,7 @@ class NpmPackage{
         Context.dir(packageSrcPath){
             try {
                 def script = "npm publish  ${force ? '--force' : ''}   ${registry ? '--registry='+registry : ''}"
-                def label = "Publishing: ${pwd()} -- $script"
+                def label = "Publishing: ${Context.pwd()} -- $script"
                                 
                 def shStatusCode = Context.sh (
                     label: label,
