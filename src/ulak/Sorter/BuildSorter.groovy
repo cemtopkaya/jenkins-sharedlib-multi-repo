@@ -1,6 +1,6 @@
 package ulak.Sorter
 
-import ulak.Model.*
+import ulak.Model.Paket
 import java.io.*
 import groovy.io.*
 import java.util.regex.Pattern
