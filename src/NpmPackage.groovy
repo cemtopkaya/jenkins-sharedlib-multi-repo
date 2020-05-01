@@ -102,9 +102,11 @@ class NpmPackage{
         }
     }
 
-    def setNpmConfigRegistries(Map<String,String> scopeRegistries, Boolean isGlobal=false){
+    def setNpmConfigRegistries(def ctx = Context, Map<String,String> scopeRegistries, Boolean isGlobal=false){
         println "----------------- setNpmConfigRegistries -------------------"
-    
+        
+        println "ctx: $ctx"
+        
         try {
             scopeRegistries.each{
                 def scope = it.key?:""
