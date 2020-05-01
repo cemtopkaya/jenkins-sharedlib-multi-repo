@@ -1,6 +1,6 @@
 package Model
 
-import NPM.*
+import NPM.NpmPackage
 
 class Paket implements Serializable{
     String name
