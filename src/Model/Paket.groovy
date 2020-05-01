@@ -1,13 +1,15 @@
 package Model
 
 class Paket implements Serializable{
-    String name;
-    String path;
-    def dependencies;
+    String name
+    String path
+    def dependencies
+    NpmPackage npmPackage
     
-    Paket(name, path, dependencies){
-        this.name = name;
-        this.path = path;
-        this.dependencies = dependencies;
+    Paket(name, path, dependencies, npmPackage=null){
+        this.name = name
+        this.path = path
+        this.dependencies = dependencies
+        this.npmPackage = npmPackage
     }
 }

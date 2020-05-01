@@ -22,7 +22,7 @@ def Map<String, Paket> call(String prjDirPath) {
         def jsn = readJSON file: pathAngularJson
         jsn["projects"].each { k, v ->
             println "---------- $k --------------"
-            if(jsn["projects"][k]["projectType"]=="library"){            
+            if(jsn["projects"][k]["projectType"] == "library"){            
                 res.put(k, new Paket(k, jsn["projects"][k]["root"], []))
             }
         }

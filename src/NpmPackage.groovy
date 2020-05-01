@@ -16,7 +16,7 @@ class NpmPackage{
         Context = context
     }
 
-    static NpmPackage parse(def context, String fullName){
+    static NpmPackage parseFromFullName(def context, String fullName){
         String scope, name, version
 
         if(fullName[0]=="@"){
@@ -35,6 +35,32 @@ class NpmPackage{
 
         println "scope: $scope, name: $name, version: $version"
         return new NpmPackage(context, scope, name, version)
+    }
+
+    static NpmPackage parseFromPackageJson(def context, String packageJsonPath){
+        println "------------------ getLibs ---------------"
+        String scopedName = PackageParser.getPackageScopedName(packageJsonPath)
+        String version = PackageParser.getPackageVersion(packageJsonPath)
+        def res = [:]
+        String pathAngularJson = "$prjDirPath/angular.json"
+        println "------- pathAngularJson: $pathAngularJson"
+        
+        try{
+            def jsn = readJSON file: pathAngularJson
+            jsn["projects"].each { k, v ->
+                println "---------- $k --------------"
+                if(jsn["projects"][k]["projectType"] == "library"){            
+                    res.put(k, new Paket(k, jsn["projects"][k]["root"], []))
+                }
+            }
+
+            return res
+
+        }catch(err){
+            println "---*** Hata (getLibs): $pathAngularJson işlenirken istisna oldu (Exception: $err)"   
+            throw err
+        }
+        
     }
 
     @Override
@@ -128,6 +154,17 @@ class NpmPackage{
 
     }
 
+    def buildAngularPackage(){
+        println "----------------- buildAngularPackage -----------------"
+        sh "pwd"
+        catchError (buildResult: "ABORTED", stageResult:"FAILURE"){
+            Context.sh (
+                label:"NPM Package Building ($getScopedPackageName())",
+                returnStdout: false,
+                script: "ng build $getScopedPackageName()"
+            )
+        }
+    }
 
     def unpublish(String registry, String packageVersion=null){
         println "----------------- unpublish -----------------"
