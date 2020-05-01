@@ -1,4 +1,4 @@
-package NPM
+package ulak.NPM
 
 class NpmPackage{
 

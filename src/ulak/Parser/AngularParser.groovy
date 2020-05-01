@@ -1,4 +1,4 @@
-package Parser
+package ulak.Parser
 
 import Model.Paket
 import java.io.*;

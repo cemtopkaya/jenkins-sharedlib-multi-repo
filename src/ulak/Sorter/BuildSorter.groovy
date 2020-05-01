@@ -1,4 +1,4 @@
-package Sorter
+package ulak.Sorter
 
 import Model.Paket
 import java.io.*;

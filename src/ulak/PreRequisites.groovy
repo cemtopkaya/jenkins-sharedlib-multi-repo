@@ -1,4 +1,4 @@
-package Jenkins
+package ulak.Jenkins
 
 class PreRequisites {
     static def Context

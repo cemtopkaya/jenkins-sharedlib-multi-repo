@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 // com/cleverbuilder/GlobalVars.groovy
-package tr.com.cinar
+package ulak.tr.com.cinar
 
 class SCM implements Serializable {
 

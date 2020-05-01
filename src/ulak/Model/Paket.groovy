@@ -1,4 +1,4 @@
-package Model
+package ulak.Model
 
 import NPM.NpmPackage
 
