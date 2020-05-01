@@ -1,3 +1,5 @@
+package ulak.Jenkins
+
 class PreRequisites {
     static def Context
 
