@@ -1,7 +1,7 @@
 class PreRequisites {
     static def Context
 
-    public def instAll(def ctx){
+    public static def instAll(def ctx){
         PreRequisites.Context = ctx
 
          try {
