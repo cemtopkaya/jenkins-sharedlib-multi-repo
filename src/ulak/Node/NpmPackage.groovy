@@ -1,4 +1,4 @@
-package ulak.NPM
+package ulak.Node
 
 class NpmPackage{
 
