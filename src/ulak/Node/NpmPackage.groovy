@@ -43,29 +43,17 @@ class NpmPackage{
     }
 
     static NpmPackage parseFromPackageJson(def context, String packageJsonPath){
-        println "------------------ getLibs ---------------"
-        String scopedName = PackageParser.getPackageScopedName(packageJsonPath)
-        String version = PackageParser.getPackageVersion(packageJsonPath)
-        def res = [:]
-        String pathAngularJson = "$prjDirPath/angular.json"
-        println "------- pathAngularJson: $pathAngularJson"
+        println "------------------ parseFromPackageJson ---------------"
+        
+        println "------- packageJsonPath: $packageJsonPath"
         
         try{
-            def jsn = readJSON file: pathAngularJson
-            jsn["projects"].each { k, v ->
-                println "---------- $k --------------"
-                if(jsn["projects"][k]["projectType"] == "library"){            
-                    res.put(k, new Paket(k, jsn["projects"][k]["root"], []))
-                }
-            }
-
-            return res
-
+            def jsn = readJSON file: packageJsonPath
+            return NpmPackage.parseFromFullName(context, jsn.name+"@"+jsn.version)
         }catch(err){
-            println "---*** Hata (getLibs): $pathAngularJson işlenirken istisna oldu (Exception: $err)"   
+            println "---*** Hata (parseFromPackageJson): $packageJsonPath işlenirken istisna oldu (Exception: $err)"   
             throw err
-        }
-        
+        }        
     }
 
     @Override
