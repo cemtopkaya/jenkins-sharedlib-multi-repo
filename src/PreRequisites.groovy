@@ -1,11 +1,9 @@
 class PreRequisites {
     static def Context
 
-    PreRequisites(def context){
+    def instAll(def context){
         PreRequisites.Context = context
-    }
-
-    def instAll(){
+        
          try {
             is_node_installed = Context.sh(
                 label: "NODE Yüklü mü?",
