@@ -14,12 +14,12 @@ class BuildSorter {
         def deps = getDependencies(param)
 
         def fnSort = { String a, String b ->    
-                //println "\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-                //println "a: $a -- b: $b"
-                //println "   a.dependencies: ${param.get(a).dependencies}"
-                //println "   b.dependencies: ${param.get(b).dependencies}"
-                //println "   a.dep.contains(b): ${param.get(a).dependencies?.contains(b)}"
-                //println "a: $a -- b: $b -- \n\t a.dependencies: ${param.get(a).dependencies}"
+                println "\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+                println "a: $a -- b: $b"
+                println "   a.dependencies: ${param.get(a).dependencies}"
+                println "   b.dependencies: ${param.get(b).dependencies}"
+                println "   a.dep.contains(b): ${param.get(a).dependencies?.contains(b)}"
+                println "a: $a -- b: $b -- \n\t a.dependencies: ${param.get(a).dependencies}"
                 if(param.get(a).dependencies == null) return -1;
                 if(param.get(a).dependencies.contains(b)) return 1;
                 if(param.get(b).dependencies.contains(a)) return -1;
