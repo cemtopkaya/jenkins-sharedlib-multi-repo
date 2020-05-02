@@ -162,6 +162,7 @@ class NpmPackage{
             )
         } catch (err) {
             println "---*** Hata (buildAngularPackage): $script çalıştırılırken istisna oldu (Exception: $err)"
+            throw err
         }
      }
 
