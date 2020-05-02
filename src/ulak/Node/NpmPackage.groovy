@@ -2,6 +2,7 @@ package ulak.Node
 
 import ulak.Model.* 
 import ulak.Parser.* 
+import com.cloudbees.groovy.cps.NonCPS
 
 class NpmPackage{
 
@@ -10,6 +11,7 @@ class NpmPackage{
     String Version
     private static def Context
 
+    @NonCPS
     @Override
     String toString(){
         return "PackageScope: $PackageScope,PackageName: $PackageName,Version: $Version"
