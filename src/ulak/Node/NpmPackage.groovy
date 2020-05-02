@@ -10,6 +10,11 @@ class NpmPackage{
     String Version
     private static def Context
 
+    @Override
+    String toString(){
+        return "PackageScope: $PackageScope,PackageName: $PackageName,Version: $Version"
+    }
+
     String getScopedPackageName(){
         return PackageScope ? PackageScope+"/"+PackageName : PackageName
     } 

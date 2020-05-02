@@ -14,4 +14,9 @@ class Paket implements Serializable{
         this.dependencies = dependencies
         this.npmPackage = npmPackage
     }
+
+    @Override
+    String toString(){
+        return "name $name, path $path, dependencies $dependencies, npmPackage $npmPackage"     
+    }
 }
