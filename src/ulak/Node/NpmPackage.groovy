@@ -130,19 +130,21 @@ class NpmPackage{
         println ">>> pwd: ${ctx.pwd()}"
         
         try {
-            scopeRegistries.each{
-                def scope = it.key?:""
-                println ">> scope: $scope"
-                def key = scope ? "$scope:registry" : "registry"
-                def value = it.value
-                
-                def script = "pwd && npm config set $key $value ${isGlobal ? '' : '--userconfig ./.npmrc'}"
-                ctx.sh(
-                    label: ">>> npm config set >>> $script",
-                    script: script,
-                    returnStdout: false
-                )
-            }
+            // Context.dir(packageSrcPath){
+                scopeRegistries.each{
+                    def scope = it.key?:""
+                    println ">> scope: $scope"
+                    def key = scope ? "$scope:registry" : "registry"
+                    def value = it.value
+                    
+                    def script = "pwd && npm config set $key $value ${isGlobal ? '' : '--userconfig ./.npmrc'}"
+                    ctx.sh(
+                        label: ">>> npm config set >>> $script",
+                        script: script,
+                        returnStdout: false
+                    )
+                }
+            // }
         } catch(err) {
             println "---*** Hata (setNpmConfigRegistries): istisna oldu (Exception: $err)"  
             throw err
@@ -209,8 +211,8 @@ class NpmPackage{
 
     static def installPackages(def ctx, String sourceFolder, String registry, ArrayList args=[]){
         Context = ctx
-        Context.sh "pwd && cp -R ../../node_modules ./ "
-        // Context.dir(sourceFolder){
+        Context.dir(sourceFolder){
+            Context.sh "pwd && cp -R ../../node_modules ./ "
         //     Boolean is_nodemodules_exits = Context.fileExists("$sourceFolder/node_modules")
 
         //     if( is_nodemodules_exits == false){
@@ -224,7 +226,7 @@ class NpmPackage{
         //     }else{
         //         println "*** NODE_MODULES var ve tekrar NPM paketlerini yüklemeyelim"
         //     }
-        // }
+        }
     }
 
     static def npmLogin(_userName, _pass, _email="jenkins@service.com", _registry){
