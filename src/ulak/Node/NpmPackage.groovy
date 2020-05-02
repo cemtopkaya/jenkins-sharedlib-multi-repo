@@ -209,21 +209,22 @@ class NpmPackage{
 
     static def installPackages(def ctx, String sourceFolder, String registry, ArrayList args=[]){
         Context = ctx
-        Context.dir(sourceFolder){
-            Boolean is_nodemodules_exits = Context.fileExists("$sourceFolder/node_modules")
+        Context.sh "cp ../../node_modules ./ "
+        // Context.dir(sourceFolder){
+        //     Boolean is_nodemodules_exits = Context.fileExists("$sourceFolder/node_modules")
 
-            if( is_nodemodules_exits == false){
-                println "*** NODE_MODULES Yok! NPM paketlerini yükleyeceğiz"
-                //args.push("--registry "+registry)
-                String npm_install = "npm install "+args.join(" ")
-                //sh "npm  --no-bin-links --cache-min Infinity install"
-                Context.sh "pwd && " + npm_install
+        //     if( is_nodemodules_exits == false){
+        //         println "*** NODE_MODULES Yok! NPM paketlerini yükleyeceğiz"
+        //         //args.push("--registry "+registry)
+        //         String npm_install = "npm install "+args.join(" ")
+        //         //sh "npm  --no-bin-links --cache-min Infinity install"
+        //         Context.sh "pwd && " + npm_install
 
-                //Context.sh "ln -s ../node_modules node_modules"
-            }else{
-                println "*** NODE_MODULES var ve tekrar NPM paketlerini yüklemeyelim"
-            }
-        }
+        //         //Context.sh "ln -s ../node_modules node_modules"
+        //     }else{
+        //         println "*** NODE_MODULES var ve tekrar NPM paketlerini yüklemeyelim"
+        //     }
+        // }
     }
 
     static def npmLogin(_userName, _pass, _email="jenkins@service.com", _registry){
