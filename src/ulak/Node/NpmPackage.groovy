@@ -192,7 +192,7 @@ class NpmPackage{
         println "NPM Package Publishing ($packageSrcPath)"
         Context.dir(packageSrcPath){
             try {
-                def json = Contex.readJSON(file: packageSrcPath)
+                def json = readJSON(file: packageSrcPath)
                 json.publishConfig = { registry = registry }
                 Contex.writeJSON(file: packageSrcPath, json: json)
                 
