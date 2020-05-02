@@ -95,7 +95,7 @@ class NpmPackage{
 
     }
 
-    private def fromNpmView(String registry, String pgk, String version){
+    private fromNpmView(String registry, String pgk, String version){
         npmViewScript = "npm view ${pgk}@${version} ${registry}"
         println "** Aynı versiyon kullanılmış mı kontrolü için script > npmViewScript: ${npmViewScript}"
         /* Eğer npm view aranan paketi bulamazsa Context.sh komutu 1 (Error 404) ile hata fırlatarak çıkacak!
@@ -124,13 +124,13 @@ class NpmPackage{
         }
     }
 
-    static def setRegistries(def ctx, Map<String,String> scopeRegistries, Boolean isGlobal=false){
+    static setRegistries(def ctx, String packageSrcPath, Map<String,String> scopeRegistries, Boolean isGlobal=false){
         println "----------------- setRegistries -------------------"
         
         println ">>> pwd: ${ctx.pwd()}"
         
         try {
-            // Context.dir(packageSrcPath){
+            Context.dir(packageSrcPath){
                 scopeRegistries.each{
                     def scope = it.key?:""
                     println ">> scope: $scope"
@@ -144,7 +144,7 @@ class NpmPackage{
                         returnStdout: false
                     )
                 }
-            // }
+            }
         } catch(err) {
             println "---*** Hata (setNpmConfigRegistries): istisna oldu (Exception: $err)"  
             throw err
@@ -168,8 +168,6 @@ class NpmPackage{
             throw err
         }
      }
-    
-    
     
     def unpublish(String registry, String packageVersion=null){
         println "----------------- unpublish -----------------"
@@ -210,7 +208,7 @@ class NpmPackage{
         }
     }
 
-    static def installPackages(def ctx, String sourceFolder, String registry, ArrayList args=[]){
+    static installPackages(def ctx, String sourceFolder, String registry, ArrayList args=[]){
         Context = ctx
         Context.dir(sourceFolder){
             // Context.sh "pwd && cp -R ../../node_modules ./ "
@@ -230,7 +228,7 @@ class NpmPackage{
         }
     }
 
-    static def npmLogin(_userName, _pass, _email="jenkins@service.com", _registry){
+    static npmLogin(_userName, _pass, _email="jenkins@service.com", _registry){
         println "_userName: $_userName, _pass: $_pass, _email: $_email, _registry: $_registry"
         def userName = _userName ?: "jenkins"
         def pass = _pass ?: "service"
@@ -247,7 +245,7 @@ class NpmPackage{
         )
     }
 
-    static def installNpmCliLogin(){
+    static installNpmCliLogin(){
         Context.sh "npm install -g npm-cli-login"
     }
 
