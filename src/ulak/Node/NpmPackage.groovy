@@ -125,7 +125,7 @@ class NpmPackage{
     }
 
     static def setRegistries(def ctx, Map<String,String> scopeRegistries, Boolean isGlobal=false){
-        println "----------------- setNpmConfigRegistries -------------------"
+        println "----------------- setRegistries -------------------"
         
         println ">>> pwd: ${ctx.pwd()}"
         
@@ -136,7 +136,7 @@ class NpmPackage{
                 def key = scope ? "$scope:registry" : "registry"
                 def value = it.value
                 
-                def script = "npm config set $key $value ${isGlobal ? '' : '--userconfig ./.npmrc'}"
+                def script = "pwd && npm config set $key $value ${isGlobal ? '' : '--userconfig ./.npmrc'}"
                 ctx.sh(
                     label: ">>> npm config set >>> $script",
                     script: script,
