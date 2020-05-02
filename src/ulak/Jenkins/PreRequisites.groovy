@@ -8,7 +8,7 @@ class PreRequisites {
 
          try {
             def is_node_installed = ctx.sh(
-                label: "NODE Yüklü mü?",
+                label: "NodeJS Yüklü mü?",
                 returnStdout: true, 
                 script: "whereis node | grep ' ' -ic"
             ).trim() 

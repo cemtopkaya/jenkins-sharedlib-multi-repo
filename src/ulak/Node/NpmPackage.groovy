@@ -209,7 +209,6 @@ class NpmPackage{
 
     static def installPackages(def ctx, String sourceFolder, String registry, ArrayList args=[]){
         Context = ctx
-        println ">>> sourceFolder: "+sourceFolder
         Context.dir(sourceFolder){
             Boolean is_nodemodules_exits = Context.fileExists("$sourceFolder/node_modules")
 
