@@ -172,10 +172,11 @@ class NpmPackage{
     def unpublish(String registry, String packageVersion=null){
         println "----------------- unpublish -----------------"
 
-        def script = "npm unpublish ${getScopedPackageName()}@${packageVersion?:this.Version.version}  --regitry=$registry"
+        def scopedName = getScopedPackageName()
+        def script = "npm unpublish ${scopedName}@${packageVersion ?: this.Version.version}  ${registry ? '--registry=$registry' : ''}"
         def label = "Unpublish Package: $script"
         try {
-            Context.sh (
+            NpmPackage.Context.sh (
                 label: label,
                 returnStatus: false,
                 script: script
