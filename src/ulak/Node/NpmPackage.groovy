@@ -130,7 +130,7 @@ class NpmPackage{
         println ">>> pwd: ${ctx.pwd()}"
         
         try {
-            Context.dir(packageSrcPath){
+            ctx.dir(packageSrcPath){
                 scopeRegistries.each{
                     def scope = it.key?:""
                     println ">> scope: $scope"
