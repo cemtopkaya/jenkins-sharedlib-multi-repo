@@ -124,7 +124,7 @@ class NpmPackage{
         }
     }
 
-    static def setNpmConfigRegistries(def ctx, Map<String,String> scopeRegistries, Boolean isGlobal=false){
+    static def setRegistries(def ctx, Map<String,String> scopeRegistries, Boolean isGlobal=false){
         println "----------------- setNpmConfigRegistries -------------------"
         
         println ">>> pwd: ${ctx.pwd()}"
