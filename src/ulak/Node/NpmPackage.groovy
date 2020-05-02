@@ -153,10 +153,11 @@ class NpmPackage{
     def buildAngularPackage(){
         println "----------------- buildAngularPackage -----------------"
         Context.sh "pwd"
-        String script = "ng build $getScopedPackageName()"
+        String scopedName = this.getScopedPackageName()
+        String script = "ng build $scopedName"
         try {
             Context.sh (
-                label:"NPM Package Building ($getScopedPackageName())",
+                label:"NPM Package Building ($scopedName)",
                 returnStdout: false,
                 script: script
             )
