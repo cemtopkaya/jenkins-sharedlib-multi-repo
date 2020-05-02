@@ -1,4 +1,5 @@
 package ulak.Node
+import com.cloudbees.groovy.cps.NonCPS
 
 class PackageVersion {
     String version
@@ -9,6 +10,7 @@ class PackageVersion {
         this.published = published
     }
 
+    @NonCPS
     @Override
     String toString(){
         return "{\n\tversion: $version,\n\tpublished: $published\n}"
