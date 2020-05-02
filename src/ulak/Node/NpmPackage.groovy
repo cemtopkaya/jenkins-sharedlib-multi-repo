@@ -199,11 +199,11 @@ class NpmPackage{
                 def script = "npm publish  ${force ? '--force' : ''}   ${registry ? '--registry='+registry : ''}"
                 def label = "Publishing: $packageSrcPath -- $script"
 
-                // def shStatusCode = Context.sh (
-                //     label: label,
-                //     script: script,
-                //     returnStatus: true
-                // )
+                def shStatusCode = NpmPackage.Context.sh (
+                    label: label,
+                    script: script,
+                    returnStatus: true
+                )
             }
             catch (err) {
                 println "---*** Hata (publishIfNeeded): istisna oldu (Exception: $err)"
