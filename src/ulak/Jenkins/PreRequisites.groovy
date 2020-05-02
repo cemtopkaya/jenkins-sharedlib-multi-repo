@@ -11,9 +11,13 @@ class PreRequisites {
                 label: "NODE Yüklü mü?",
                 returnStdout: true, 
                 script: "whereis node | grep ' ' -ic"
+                // script: "whereis node | grep ' ' -ic"
             ).trim() 
         }
-        catch (exception) { PreRequisites.installNodeJs() }
+        catch (err) { 
+            println "---*** HATA (instAll): istisna oldu: $err"
+            PreRequisites.installNodeJs() 
+        }
 
         // try {
         //     angular_cli_version =  ctx.sh(
