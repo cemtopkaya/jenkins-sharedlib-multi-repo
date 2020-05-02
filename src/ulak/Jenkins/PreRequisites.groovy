@@ -11,11 +11,10 @@ class PreRequisites {
                 label: "NODE Yüklü mü?",
                 returnStdout: true, 
                 script: "whereis node | grep ' ' -ic"
-                // script: "whereis node | grep ' ' -ic"
             ).trim() 
         }
         catch (err) { 
-            println "---*** HATA (instAll): istisna oldu: $err"
+            println "---*** HATA (instAll): Node bulunamadı !!! $err"
             PreRequisites.installNodeJs() 
         }
 
