@@ -8,7 +8,7 @@ class NpmPackage{
 
     String PackageScope
     String PackageName
-    String Version
+    PackageVersion Version
     private static def Context
 
     @NonCPS
@@ -23,13 +23,14 @@ class NpmPackage{
 
     NpmPackage(def context, String packageScope, String packageName, String version){
         this.PackageName = packageName
-        this.Version = version
+        this.Version = new PackageVersion(version)
         this.PackageScope = packageScope
         Context = context
     }
 
     static NpmPackage parseFromFullName(def context, String fullName){
-        String scope, name, version
+        String scope, name
+        PackageVersion version
 
         if(fullName[0]=="@"){
             scope = fullName.split("/")[0]
@@ -42,11 +43,11 @@ class NpmPackage{
         if(name?.split("@").size()>0){
             String[] arr = name.split('@')
             name = arr[0]
-            version = arr[1]
+            version = new PackageVersion(arr[1])
         }
 
         println "scope: $scope, name: $name, version: $version"
-        return new NpmPackage(context, scope, name, version)
+        return new NpmPackage(context, scope, name, new PackageVersion(version))
     }
 
     static NpmPackage parseFromPackageJson(def context, String packageJsonPath){
@@ -65,7 +66,7 @@ class NpmPackage{
 
     Boolean isPublished(String registry){
         String pkg = PackageScope ? PackageScope+"/"+PackageName : PackageName
-        return NpmPackage.fromApi(registry, pkg, Version)
+        return NpmPackage.fromApi(registry, pkg, this.Version.version)
     }
 
     private static Boolean fromApi(String registry, String pgk, String version){
@@ -164,7 +165,7 @@ class NpmPackage{
     def unpublish(String registry, String packageVersion=null){
         println "----------------- unpublish -----------------"
 
-        def script = "npm unpublish ${getScopedPackageName()}@${packageVersion?:Version}  --regitry=$registry"
+        def script = "npm unpublish ${getScopedPackageName()}@${packageVersion?:this.Version.version}  --regitry=$registry"
         def label = "Unpublish Package: $script"
         try {
             Context.sh (
