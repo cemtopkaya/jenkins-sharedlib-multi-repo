@@ -152,7 +152,7 @@ class NpmPackage{
 
     def buildAngularPackage(){
         println "----------------- buildAngularPackage -----------------"
-        sh "pwd"
+        Context.sh "pwd"
         catchError (buildResult: "ABORTED", stageResult:"FAILURE"){
             Context.sh (
                 label:"NPM Package Building ($getScopedPackageName())",
