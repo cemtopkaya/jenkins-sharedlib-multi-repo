@@ -138,7 +138,7 @@ class NpmPackage{
                 
                 def script = "npm config set $key $value ${isGlobal ? '' : '--userconfig ./.npmrc'}"
                 ctx.sh(
-                    label: "npm config set registry : $script",
+                    label: ">>> npm config set >>> $script",
                     script: script,
                     returnStdout: false
                 )
