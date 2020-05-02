@@ -14,7 +14,7 @@ class NpmPackage{
     @NonCPS
     @Override
     String toString(){
-        return "PackageScope: $PackageScope , PackageName: $PackageName , Version: $Version"
+        return "\n{\n\tPackageScope: $PackageScope, \n\tPackageName: $PackageName, \n\tVersion: $Version\n}"
     }
 
     String getScopedPackageName(){
