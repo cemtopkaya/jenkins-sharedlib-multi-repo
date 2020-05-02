@@ -124,26 +124,24 @@ class NpmPackage{
         }
     }
 
-    static def setRegistries(def ctx, String workDir, Map<String,String> scopeRegistries, Boolean isGlobal=false){
+    static def setRegistries(def ctx, Map<String,String> scopeRegistries, Boolean isGlobal=false){
         println "----------------- setRegistries -------------------"
         
         println ">>> pwd: ${ctx.pwd()}"
         
         try {
-            ctx.dir(workDir){
-                scopeRegistries.each{
-                    def scope = it.key?:""
-                    println ">> scope: $scope"
-                    def key = scope ? "$scope:registry" : "registry"
-                    def value = it.value
-                    
-                    def script = "pwd && npm config set $key $value ${isGlobal ? '' : '--userconfig ./.npmrc'}"
-                    ctx.sh(
-                        label: ">>> npm config set >>> $script",
-                        script: script,
-                        returnStdout: false
-                    )
-                }                
+            scopeRegistries.each{
+                def scope = it.key?:""
+                println ">> scope: $scope"
+                def key = scope ? "$scope:registry" : "registry"
+                def value = it.value
+                
+                def script = "pwd && npm config set $key $value ${isGlobal ? '' : '--userconfig ./.npmrc'}"
+                ctx.sh(
+                    label: ">>> npm config set >>> $script",
+                    script: script,
+                    returnStdout: false
+                )
             }
         } catch(err) {
             println "---*** Hata (setNpmConfigRegistries): istisna oldu (Exception: $err)"  
