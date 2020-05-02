@@ -19,6 +19,6 @@ class Paket implements Serializable{
     @NonCPS
     @Override
     String toString(){
-        return "name $name, path $path, dependencies $dependencies, npmPackage $npmPackage"     
+        return "name: $name, path: $path, dependencies: $dependencies, npmPackage: $npmPackage"     
     }
 }
