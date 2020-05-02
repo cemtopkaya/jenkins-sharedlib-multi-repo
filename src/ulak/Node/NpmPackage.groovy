@@ -43,11 +43,11 @@ class NpmPackage{
         if(name?.split("@").size()>0){
             String[] arr = name.split('@')
             name = arr[0]
-            version = new PackageVersion(arr[1])
+            version = arr[1]
         }
 
         println "scope: $scope, name: $name, version: $version"
-        return new NpmPackage(context, scope, name, new PackageVersion(version))
+        return new NpmPackage(context, scope, name, version)
     }
 
     static NpmPackage parseFromPackageJson(def context, String packageJsonPath){
