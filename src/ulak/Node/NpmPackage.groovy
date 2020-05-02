@@ -14,7 +14,7 @@ class NpmPackage{
     @NonCPS
     @Override
     String toString(){
-        return "\n{\n\tPackageScope: $PackageScope, \n\tPackageName: $PackageName, \n\tVersion: $Version\n}"
+        return "{\n\tPackageScope: $PackageScope, \n\tPackageName: $PackageName, \n\tVersion: $Version\n}"
     }
 
     String getScopedPackageName(){
@@ -191,11 +191,11 @@ class NpmPackage{
     def publish(String registry, String packageSrcPath, Boolean force=false){
         println "----------------- publishIfNeeded -----------------"
                     
-        println "NPM Package Publishing (${getScopedPackageName()})"
+        println "NPM Package Publishing ($packageSrcPath)"
         Context.dir(packageSrcPath){
             try {
                 def script = "npm publish  ${force ? '--force' : ''}   ${registry ? '--registry='+registry : ''}"
-                def label = "Publishing: ${Context.pwd()} -- $script"
+                def label = "Publishing: $packageSrcPath -- $script"
                                 
                 def shStatusCode = Context.sh (
                     label: label,
