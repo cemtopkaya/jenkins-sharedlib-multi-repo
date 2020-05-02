@@ -190,11 +190,11 @@ class NpmPackage{
         println "----------------- publishIfNeeded -----------------"
                     
         println "NPM Package Publishing ($packageSrcPath)"
-        Context.dir(packageSrcPath){
+        NpmPackage.Context.dir(packageSrcPath){
             try {
-                def json = readJSON(file: packageSrcPath)
+                def json = NpmPackage.Context.readJSON(file: packageSrcPath)
                 json.publishConfig = { registry = registry }
-                Contex.writeJSON(file: packageSrcPath, json: json)
+                NpmPackage.Context.writeJSON(file: packageSrcPath, json: json)
                 
                 def script = "npm publish  ${force ? '--force' : ''}   ${registry ? '--registry='+registry : ''}"
                 def label = "Publishing: $packageSrcPath -- $script"
