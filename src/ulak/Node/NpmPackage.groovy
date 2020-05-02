@@ -154,7 +154,7 @@ class NpmPackage{
         println "----------------- buildAngularPackage -----------------"
         Context.sh "pwd"
         String scopedName = this.getScopedPackageName()
-        String script = "ng build $scopedName"
+        String script = "export PATH=\$PATH:./node_modules/@angular/cli/bin && ng build $scopedName"
         try {
             Context.sh (
                 label:"NPM Package Building ($scopedName)",
@@ -166,7 +166,8 @@ class NpmPackage{
             throw err
         }
      }
-
+    
+    
     def unpublish(String registry, String packageVersion=null){
         println "----------------- unpublish -----------------"
 
