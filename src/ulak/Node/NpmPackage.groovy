@@ -218,7 +218,9 @@ class NpmPackage{
                 //args.push("--registry "+registry)
                 String npm_install = "npm install "+args.join(" ")
                 //sh "npm  --no-bin-links --cache-min Infinity install"
-                Context.sh "pwd && " + npm_install
+                //Context.sh "pwd && " + npm_install
+
+                Context.sh "ln -s ../../node_modules node_modules"
             }else{
                 println "*** NODE_MODULES var ve tekrar NPM paketlerini yüklemeyelim"
             }
