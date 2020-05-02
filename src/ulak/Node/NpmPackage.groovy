@@ -29,8 +29,7 @@ class NpmPackage{
     }
 
     static NpmPackage parseFromFullName(def context, String fullName){
-        String scope, name
-        PackageVersion version
+        String scope, name, version
 
         if(fullName[0]=="@"){
             scope = fullName.split("/")[0]
