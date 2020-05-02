@@ -193,7 +193,7 @@ class NpmPackage{
         NpmPackage.Context.dir(packageSrcPath){
             try {
                 def json = NpmPackage.Context.readJSON(file: "$packageSrcPath/package.json")
-                json.publishConfig = { registry = registry }
+                json["publishConfig"]["registry"] = registry
                 NpmPackage.Context.writeJSON(file: "$packageSrcPath/package.json", json: json)
                 
                 def script = "npm publish  ${force ? '--force' : ''}   ${registry ? '--registry='+registry : ''}"
