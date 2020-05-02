@@ -170,6 +170,7 @@ class NpmPackage{
      }
     
     
+    
     def unpublish(String registry, String packageVersion=null){
         println "----------------- unpublish -----------------"
 
@@ -212,7 +213,7 @@ class NpmPackage{
     static def installPackages(def ctx, String sourceFolder, String registry, ArrayList args=[]){
         Context = ctx
         Context.dir(sourceFolder){
-            Context.sh "pwd && cp -R ../../node_modules ./ "
+            // Context.sh "pwd && cp -R ../../node_modules ./ "
         //     Boolean is_nodemodules_exits = Context.fileExists("$sourceFolder/node_modules")
 
         //     if( is_nodemodules_exits == false){
