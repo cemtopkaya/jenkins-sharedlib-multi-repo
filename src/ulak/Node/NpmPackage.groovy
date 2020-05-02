@@ -48,7 +48,7 @@ class NpmPackage{
         println "------- packageJsonPath: $packageJsonPath"
         
         try{
-            def jsn = readJSON file: packageJsonPath
+            def jsn = context.readJSON file: packageJsonPath
             return NpmPackage.parseFromFullName(context, jsn.name+"@"+jsn.version)
         }catch(err){
             println "---*** Hata (parseFromPackageJson): $packageJsonPath işlenirken istisna oldu (Exception: $err)"   
