@@ -10,6 +10,8 @@ class BuildSorter {
 
     @NonCPS
     def static getSortedLibraries(Map<String, Paket> param){
+        println "--------------- getSortedLibraries ---------"
+
         def libs = param.keySet();
         def deps = getDependencies(param)
 
