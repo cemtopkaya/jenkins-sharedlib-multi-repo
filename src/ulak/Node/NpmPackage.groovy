@@ -61,11 +61,6 @@ class NpmPackage{
         }        
     }
 
-    @Override
-    String toString(){
-        return "PackageScope: $PackageScope, PackageName: $PackageName, Version: $Version"
-    }
-
     Boolean isPublished(String registry){
         String pkg = PackageScope ? PackageScope+"/"+PackageName : PackageName
         return NpmPackage.fromApi(registry, pkg, Version)
