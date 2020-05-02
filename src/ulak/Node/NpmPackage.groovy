@@ -153,14 +153,17 @@ class NpmPackage{
     def buildAngularPackage(){
         println "----------------- buildAngularPackage -----------------"
         Context.sh "pwd"
-        catchError (buildResult: "ABORTED", stageResult:"FAILURE"){
+        String script = "ng build $getScopedPackageName()"
+        try {
             Context.sh (
                 label:"NPM Package Building ($getScopedPackageName())",
                 returnStdout: false,
-                script: "ng build $getScopedPackageName()"
+                script: script
             )
+        } catch (err) {
+            println "---*** Hata (buildAngularPackage): $script çalıştırılırken istisna oldu (Exception: $err)"
         }
-    }
+     }
 
     def unpublish(String registry, String packageVersion=null){
         println "----------------- unpublish -----------------"
