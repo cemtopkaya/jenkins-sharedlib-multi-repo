@@ -11,6 +11,7 @@ class BuildSorter {
     @NonCPS
     def static getSortedLibraries(Map<String, Paket> param){
         println "--------------- getSortedLibraries ---------"
+        println "--------------- param: $param"
 
         def libs = param.keySet();
         def deps = getDependencies(param)
