@@ -220,7 +220,7 @@ class NpmPackage{
                 //sh "npm  --no-bin-links --cache-min Infinity install"
                 //Context.sh "pwd && " + npm_install
 
-                Context.sh "ln -s ../../node_modules node_modules"
+                Context.sh "ln -s ../node_modules node_modules"
             }else{
                 println "*** NODE_MODULES var ve tekrar NPM paketlerini yüklemeyelim"
             }
