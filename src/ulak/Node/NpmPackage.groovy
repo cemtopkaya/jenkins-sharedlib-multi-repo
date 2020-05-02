@@ -209,7 +209,7 @@ class NpmPackage{
 
     static def installPackages(def ctx, String sourceFolder, String registry, ArrayList args=[]){
         Context = ctx
-        Context.sh "cp ../../node_modules ./ "
+        Context.sh "pwd && cp -R ../../node_modules ./ "
         // Context.dir(sourceFolder){
         //     Boolean is_nodemodules_exits = Context.fileExists("$sourceFolder/node_modules")
 
