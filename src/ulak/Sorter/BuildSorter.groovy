@@ -39,9 +39,9 @@ class BuildSorter {
         def depNames = []
         p1.eachWithIndex { entry, index ->
 
-            // println "$index Key: $entry.key \n\t Value: $entry.value \n\t Path: $entry.value.path \n\t Dependencies: $entry.value.dependencies"
+            println "$index Key: $entry.key \n\t Value: $entry.value \n\t Path: $entry.value.path \n\t Dependencies: $entry.value.dependencies"
 
-            // println "\n\t Dep Name: ${d} \n\t $depNames \n\t depNames.contains(d): ${depNames.contains(d)} \n***************"
+            println "\n\t Dep Name: ${d} \n\t $depNames \n\t depNames.contains(d): ${depNames.contains(d)} \n***************"
             entry.value.dependencies.each{
                 d-> 
                     if(!depNames.contains(d)) {
