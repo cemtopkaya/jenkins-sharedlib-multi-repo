@@ -14,16 +14,6 @@ def call(def context, String repoDirectory, String repoUrl, String sourceBranch,
     
     return node (params.AGENT_NAME){
         
-		stage("Clean Workspace"){
-            when {
-                expression { params.CLEAN_WORKSPACE as Boolean == true }
-            }
-			steps {
-				echo "*** Klasörü temizleyelim."
-			    cleanWs()
-			}
-		}
-        
         stage("Checkout"){
             dir(repoDirectory) {
                 checkoutSCM(repoUrl, sourceBranch, credId)
