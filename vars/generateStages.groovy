@@ -116,7 +116,7 @@ def call(def context, String repoDirectory, String repoUrl, String sourceBranch,
                         entry.value.npmPackage.publish(params.NPM_REGISTRY, packageSrcPath, true)
                     }
                     
-                    println ">>> entry  ::: $entry"
+                    println ">>> entry   ::: $entry"
                 }
             }
             
