@@ -123,27 +123,22 @@ def call(def context, String repoDirectory, String repoUrl, String sourceBranch,
         }
 		
 		stage('Git Push To Origin') {
-            // when {
-            //     expression { params.TAG_AND_PUSH as Boolean == true}
-            // }
-            steps {
-                script {
-                    if(params.TAG_AND_PUSH == true){
-                        
-                        tagName = "${env.JOB_NAME}-v${MAJOR}.${PHASE_NUMBER}.${SPRINT_NUMBER}-b${env.BUILD_NUMBER}"
-                        eposta = "jenkins.servis@ulakhaberlesme.com.tr"
-                        name = "Jenkins Servis"
-                        
-                        echo "*** Etiketlenecek ve Push edilecek. Kullanılacak etikat adı: ${tagName}"
-                        
-                        sshagent([params.REPO_CRED_ID]) {
-                            sh "git config --local user.email '${eposta}'"
-                            sh "git config --local user.name '$name'"
-                            sh "git tag -fa ${tagName} -m 'git tag oldu'"
-                            sh "git push origin HEAD:$REPO_TARGET_BRANCH_NAME --tags"
-                        }
-                        
+            script {
+                if(params.TAG_AND_PUSH == true){
+                    
+                    tagName = "${env.JOB_NAME}-v${MAJOR}.${PHASE_NUMBER}.${SPRINT_NUMBER}-b${env.BUILD_NUMBER}"
+                    eposta = "jenkins.servis@ulakhaberlesme.com.tr"
+                    name = "Jenkins Servis"
+                    
+                    echo "*** Etiketlenecek ve Push edilecek. Kullanılacak etikat adı: ${tagName}"
+                    
+                    sshagent([params.REPO_CRED_ID]) {
+                        sh "git config --local user.email '${eposta}'"
+                        sh "git config --local user.name '$name'"
+                        sh "git tag -fa ${tagName} -m 'git tag oldu'"
+                        sh "git push origin HEAD:$REPO_TARGET_BRANCH_NAME --tags"
                     }
+                    
                 }
             }
         }
