@@ -14,6 +14,16 @@ def call(def context, String repoDirectory, String repoUrl, String sourceBranch,
     
     return node (params.AGENT_NAME){
         
+		stage("Clean Workspace"){
+            when {
+                expression { params.CLEAN_WORKSPACE as Boolean == true }
+            }
+			steps {
+				echo "*** Klasörü temizleyelim."
+			    cleanWs()
+			}
+		}
+        
         stage("Checkout"){
             dir(repoDirectory) {
                 checkoutSCM(repoUrl, sourceBranch, credId)
@@ -55,7 +65,7 @@ def call(def context, String repoDirectory, String repoUrl, String sourceBranch,
                     def libDirPath = "$repoDirectory/$entry.value.path"
                     println "libDirPath: $libDirPath"
                     // paketin bağımlılıklarını bulalım
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE'){
                         def allDeps  = getLibDependencies(libDirPath)
                         
                         def projectLibNames = libs.keySet()
@@ -67,16 +77,13 @@ def call(def context, String repoDirectory, String repoUrl, String sourceBranch,
                         }
                         
                         println "entry.value.dependencies: ${entry.value.dependencies}"
-                        
-                        /*
-                        */
                     }
                 }
 
                 println "---***** ------------ getSortedLibraries ---------"
                 // Tüm bağımlılıkları en az bağımlıdan, en çoka doğru sıralayalım
                 
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                catchError(buildResult: 'ABORTED', stageResult: 'FAILURE'){
                     def sortedLibs = BuildSorter.getSortedLibraries(libs)
 
                     sortedLibs.each { packageName ->
