@@ -88,7 +88,7 @@ def call(def context, String repoDirectory, String repoUrl, String sourceBranch,
                         
                         println "lib: $lib"
                         
-                        //lib.npmPackage.buildAngularPackage()
+                        lib.npmPackage.buildAngularPackage()
                     }
                 }
             }
